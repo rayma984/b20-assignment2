@@ -7,8 +7,9 @@
 </head>
 
 <body>
+    
     <div class="header">
-        B20 Website Home
+        <h2>B20 Website Home</h2>       
     </div>
 
     <!--Intuition: a navigation bar is an unordered list of links, figure out horizontal stuff in CSS-->
@@ -44,5 +45,58 @@
         </ul>
     </div> 
 
+    <div id="welcome">
+        <h2>
+            Welcome! 
+        </h2>
+    </div>
+    
+    <!--a horizontal divider line-->
+    <hr class="divider">
+
+    <div class="text_blurb">
+        <h2>Course Description:</h2>
+
+        <!--this is the course description-->
+        <p>A practical introduction to databases and Web app development. Databases: terminology and applications; creating, querying and updating databases; the entity-relationship model for database design. Web documents and applications: static and interactive documents; Web servers and dynamic server-generated content; Web application development and interface with databases.
+        </p>
+    </div>
+
+    <div id="course_logistics">
+        <p>Prerequisite:    Some experience with programming in an imperative language such as Python, Java or C.</p>
+        <p>Exclusion:        This course may not be taken after - or concurrently with - any C- or D-level CSC course.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="contact_info">
+        <h3>Contact me:</h3>
+
+        <ul class="method_of_contact">
+            <li>Email:</li>
+            <li>Phone:</li>
+            <li>Lecture:</li>
+            <li>OH:</li>
+        </ul>
+        
+        <ul class="contacts">
+            <li>bretscher@utsc.utoronto.ca</li>
+            <li>(416) 208-4745</li>
+            <li>HW 216 Mondays 9-11AM </li>
+            <li>IC493 Wednessdays 11-12AM</li>
+        </ul>
+    </div>
+
+    <div id="anon_feedback">
+        <h2>Anonymous Feedback</h2>
+
+        <form>>
+            <label for="feedback">Enter Feedback</label>
+
+            <textarea id="feedback" name="Enter feedback here"></textarea>
+    
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
