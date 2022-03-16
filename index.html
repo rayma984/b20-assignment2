@@ -2,52 +2,54 @@
 <html lang="en">
 
 <head>
-    <!--- <link rel="stylesheet" href="style.css">   LINK TO CSS--->
-    <title>B20 Website Home</title> <!---name tentative-->
+    <link rel="stylesheet" href="index.css">
+    <title>CSCB20 WEBSITE</title> 
 </head>
 
 <body>
     
     <div class="header">
-        <h2>B20 Website Home</h2>       
+        <h2 >CSCB20 HOMEPAGE</h2>       
     </div>
 
     <!--Intuition: a navigation bar is an unordered list of links, figure out horizontal stuff in CSS-->
     <div class="navigation_bar">
-        <ul class="nav_links">
-            <li>
+        
+            <div>
                 <a href="index.html">Home</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="course_team.html">Course Team</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="syllabus.pdf">Syllabus</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="lectures.html">Lectures</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="weekly_schedule.html">Weekly Schedule</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="https://markus.utsc.utoronto.ca/cscb20w22/assignments">Markus</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="https://piazza.com/class/kxj5alixpjg4ft">Piazza</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="assignments.html">Assignments</a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="labs.html">Labs</a>
-            </li>
-        </ul>
-    </div> 
+            </div>
+    </div>
+
+    <hr class = "divider">
 
     <div id="welcome">
-        <h2>
-            Welcome! 
+        <h2 align="center"><span>
+            Welcome!
+        </span>
         </h2>
     </div>
     
@@ -55,7 +57,7 @@
     <hr class="divider">
 
     <div class="text_blurb">
-        <h2>Course Description:</h2>
+        <h2 class ="headings"><u>Course Description:</u></h2>
 
         <!--this is the course description-->
         <p>A practical introduction to databases and Web app development. Databases: terminology and applications; creating, querying and updating databases; the entity-relationship model for database design. Web documents and applications: static and interactive documents; Web servers and dynamic server-generated content; Web application development and interface with databases.
@@ -69,42 +71,49 @@
 
     <hr class="divider">
 
-    <div class="contact_info">
-        <h3>Contact me:</h3>
+    <h3 class= "headings" align="left" ><u>Contact details:</u></h3>
 
-        <ul class="method_of_contact">
-            <li>Email:</li>
-            <li>Phone:</li>
-            <li>Lecture:</li>
-            <li>OH:</li>
-        </ul>
+    <div class="contact_info">
         
-        <ul class="contacts">
-            <li>bretscher@utsc.utoronto.ca</li>
-            <li>(416) 208-4745</li>
-            <li>HW 216 Mondays 9-11AM </li>
-            <li>IC493 Wednessdays 11-12AM</li>
-        </ul>
+
+        <div class="upper">
+            <div>Email:</div>
+            <div>Phone:</div>
+            <div>Lecture:</div>
+            <div>OH:</div>
+        </div>
+        
+        <div class = "lower">
+            <div>bretscher@utsc.utoronto.ca</div>
+            <div>(416) 208-4745</div>
+            <div>HW 216 Mondays 9-11AM </div>
+            <div>IC493 Wednessdays 11-12AM</div>
+        </div>
     </div>
 
     <div id="anon_feedback">
-        <h2>Anonymous Feedback</h2>
+        <h2 class = "headings"><u>Anonymous Feedback:</u></h2>
 
-        <form>>
+        <form>
             <label for="feedback">Enter Feedback</label>
 
-            <textarea id="feedback" name="Enter feedback here"></textarea>
+            <textarea id="feedback" placeholder="Enter text here"></textarea>
     
             <button type="submit">Submit</button>
         </form>
     </div>
 
+    <hr class="divider">
+
     <div class="footer">
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a>
-        <p class="signature">Site designed by Raymond Moy</p>
-        <img src="UofT.png" class="footer_pic" alt="UofT is no more">
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a>
+        
+        
+        <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a></div>
+        <div><img src="UofT.png" class="footer_pic" alt="UofT is no more"></div>
+        <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a></div>
+        <div><p class="signature">Site designed by Raymond Moy, Amodh Durve</p></div>
     </div>
 
 </body>
+
 </html>
