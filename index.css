@@ -1,0 +1,109 @@
+
+
+title {
+	color: green;
+}
+
+#welcome {
+	background-image: url("hi.jpg");
+	
+}
+#welcome span {
+	background-color: beige;
+	border-style: solid;
+	color: black;
+}
+
+.header{
+
+	text-align: center;
+	font-family:Courier New;
+	font-size:  200%;
+	border-style: solid;
+	border-color: salmon;
+	color: salmon;
+	background-image: url("n.gif");
+}
+
+/*
+values for the first flexbox 
+*/
+
+.navigation_bar{
+	display: flex;
+	margin-top: 10px;
+	border-style: solid;
+	height: 30px;
+	flex-direction: row;
+	justify-content: space-evenly;
+	font-size: 120%;
+
+}
+
+body {
+	color:  salmon;
+	background: rgb(255, 255, 206);
+	font-size: 120%;
+
+}
+
+#welcome{
+	font-family:papyrus;	
+	font-size: 150%;				
+}
+
+
+.divider {
+	border-top: 5px dashed salmon;
+	margin-top: 20px;
+}
+
+.text_blurb {
+
+	color: sienna;
+	font-family: Rockwell ;
+
+}
+
+/* Values for the second textbox */
+.upper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	color: sienna;
+	font-size: 120%;
+	border-color: salmon;
+	border-style: solid;
+}
+.lower {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	color: saddlebrown;
+	border-color: salmon;
+	border-style: solid;
+	border-spacing: ;
+}
+
+.headings {
+	color: sienna;
+	font-size: 150%;
+	font-family: Courier New;
+}
+
+#course_logistics {
+	color:  sienna;
+	fontsize:  110%;
+	font-family: Rockwell;
+}
+
+.footer {
+	margin-top: 100px;
+	color: darkmagenta;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 10px, 10px;
+	
+}
