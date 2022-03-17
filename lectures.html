@@ -4,11 +4,6 @@
 <head>
     <link rel="stylesheet" href="lectures.css">
     <title>CSCB20 Lectures</title> <!---name tentative-->
-    <style>
-         table, th, td {
-            border: 1px solid black;
-         }
-    </style>
 </head>
 
 <body>
@@ -68,212 +63,91 @@
         </h2>
     </div>
 
-    <hr class = "divider">
-
     <div id="table_header">
-         <table>
-         <tr>
-            <th>Week</th>
-            <th>Topic</th>
-            <th>Reference Notes</th>
-            <th>Slide Shows</th>
-         </tr>
+        <h3>Week</h3>
+        <h3>Topic</h3>
+        <h3>Reference Notes</h3>
+        <h3>Slide Shows</h3>
     </div>
 
+    <!--inside this container, imma make divs of each ROW: week number, topic, reference notes, slide show-->
     <div id="table-contents">
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>1</p>
-            </td>
-
-            <td>
             <p>Introduction, Databases background</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>2</p>
-            </td>
-
-            <td>
             <p>Schema Diagrams, Relational Algebra</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>3</p>
-            </td>
-
-            <td>
             <p>SQL and MySQL</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>4</p>
-            </td>
-
-            <td>
             <p>MySQL Queries, Creating and Editing Tables</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
-
-         <tr class = "row_items">
-            <td>
+        </div>
+        <div class="row_item">
             <p>5</p>
-            </td>
-
-            <td>
             <p>MySQL Outer Joins, Views, NULL, string functions, HTML</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>6</p>
-            </td>
-
-            <td>
             <p>HTML, CSS</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>7</p>
-            </td>
-
-            <td>
-             <p>PHP</p>
-            </td>
-
-            <td>
+            <p>PHP</p>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>8</p>
-            </td>
-
-            <td>
             <p>PHP and SQL</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
-
-         <tr class = "row_items">
-            <td>
+        </div>
+        <div class="row_item">
             <p>9</p>
-            </td>
-
-            <td>
             <p>JavaScript and jQuery</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
+        </div>
 
-         <tr class = "row_items">
-            <td>
+        <div class="row_item">
             <p>10</p>
-            </td>
-
-            <td>
             <p>jQuery, AJAX, JSON</p>
-            </td>
-
-            <td>
             <a href="lec_notes.pdf">lecture notes</a>
-            </td>
-
-            <td>
             <a href="slides.pdf">in class slides</a>
-            </td>
-         </tr>
-
+        </div>
     </div>
-         </table>
 
-    <hr class = "divider">
 
     <div class="footer">
-        <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a></div>
-        <div><img src="UofT.png" class="footer_pic" alt="UofT is no more"></div>
-        <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a></div>
+        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a>
+        <p class="signature">Site designed by Raymond Moy</p>
+        <img src="UofT.png" class="footer_pic" alt="UofT is no more">
+        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a>
         <a href="https://www.utsc.utoronto.ca/~bretscher/b20/lectures.html">slides source</a>
-
-        <p class="signature">Site designed by Raymond Moy, Leon Hu</p>
-       
     </div>
 </body>
 </html>
