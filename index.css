@@ -182,12 +182,28 @@ button:hover{
 /*FOOTER SHOULD BE PRESENT IN EVERY CSS*/
 
 /*for when its a phone or tablet view */
-/*PUT MOBILE ADJUSTMENTS HERE*/ D
+/*PUT MOBILE ADJUSTMENTS HERE!*/ 
 @media all and (max-width: 720px){
 	body{
 		background: cornflowerblue;
 		color:aquamarine
 	}
+
+	.navigation_bar{
+		order: 2;
+		display: flex;
+		border-style: solid;
+		height: 30px;
+		flex-direction: column;
+		justify-content: space-between;
+		font-size: 120%;
+		background-color: salmon;
+		text-decoration: none;
+		width: 100%;
+		align-items: stretch;
+		flex-wrap: wrap;
+	}
+	
 }
 
 
