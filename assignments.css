@@ -1,0 +1,124 @@
+#sticky_top{
+	display: flex;
+	position: sticky;
+	flex-direction: column;
+	max-width:fit-content;
+}
+
+
+
+.header{
+	order: 1;
+	text-align: center;
+	font-family:Courier New;
+	font-size:  210%;
+	border-style: solid;
+	border-color: black;
+	color: beige;
+	background-image: url("n2.gif");
+	max-height: min-content;
+	
+	background-size: contain;
+
+	
+}
+
+
+
+/* for the flex items in navbar*/
+
+.navigation_bar{
+	order: 2;
+	display: flex;
+	border-style: solid;
+	height: 30px;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 120%;
+	background-color: saddlebrown;
+	text-decoration: none;
+	width: 100%;
+	align-items: stretch;
+	flex-wrap: wrap;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.nav_button{
+	border-style: outset;
+	background-color:lightgoldenrodyellow;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	border-color: blue;
+	color: saddlebrown;
+	padding-left: 20px;
+	border-radius: 12px;
+	padding-right: 20px;
+}
+
+
+#assignment_blurb {
+	font-size: 120%;
+	font-family: Courier New;
+	font-weight: bold;
+	color: saddlebrown;
+}
+
+
+
+.divider {
+	border-top: 5px dashed saddlebrown;
+	margin-top: 20px;
+}
+
+
+.assignment_stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.assignment_block {
+	font-family: Courier New;
+	font-size: 120%;
+	color: saddlebrown;
+	font-weight: bold;
+}
+
+
+
+/*define behaviour for links */
+a:link {
+	text-decoration: none;
+}
+a:visited{
+	text-decoration: underline;
+}
+a:hover{
+	text-decoration: underline;
+	text-shadow: blueviolet;
+	text-decoration-color: black;
+}
+a:active{
+	color:aqua;
+	text-decoration: underline;
+	text-decoration-color: greenyellow;
+}
+
+
+
+
+body {
+	background-color: lightgoldenrodyellow;
+
+}
+
+.footer {
+	margin-top: 100px;
+	color: darkmagenta;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 10px, 10px;
+	align-items: center;
+}
