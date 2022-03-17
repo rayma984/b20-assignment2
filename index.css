@@ -21,7 +21,7 @@ title {
 }
 
 .header{
-
+	order: 1;
 	text-align: center;
 	font-family:Courier New;
 	font-size:  210%;
@@ -29,30 +29,47 @@ title {
 	border-color: black;
 	color: salmon;
 	background-image: url("n.gif");
-	
 	max-height: 150px;
-}
+	width: 100%;
 
+	flex-wrap: wrap;
+	
+}
+#sticky_top{ /*the flexbox containing the header and navbar*/
+	display:flex;
+	position: sticky;
+	top: 0;
+	align-items: center;
+	flex-direction: column;
+
+}
 /*
 values for the first flexbox 
 */
 
 .navigation_bar{
+	order: 2;
 	display: flex;
 	border-style: solid;
 	height: 30px;
 	flex-direction: row;
 	justify-content: space-between;
 	font-size: 120%;
-	background-color: rgb(11, 97, 211);
+	background-color: salmon;
 	text-decoration: none;
+	width: 100%;
+	align-items: stretch;
+	flex-wrap: wrap;
 }
 
 .nav_button{
-	border-style: solid;
-	background-color: beige;
+	border-style: outset;
+	background-color:whitesmoke;
 	font-family:Georgia, 'Times New Roman', Times, serif;
-	border-style:hidden;
+	border-color: blue;
+
+	padding-left: 40px;
+	padding-right: 40px;
 }
 /*define behaviour for links */
 a:link {
@@ -67,19 +84,12 @@ a:hover{
 	text-decoration-color: black;
 }
 a:active{
-	background-color: aqua;
-	background-image: url("hi.jpg");
-	color:black;
+	color:aqua;
 	text-decoration: underline;
 	text-decoration-color: greenyellow;
 }
 
-#sticky_top{
-	position: sticky;
-	top: 0;
-}
-
-/* THE ABOVE SHOULD BE IN EVERY CSS FILE! */
+/* THE ABOVE SHOULD BE IN EVERY CSS FILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 body {
 	color:  salmon;
@@ -96,14 +106,13 @@ body {
 
 .divider {
 	border-top: 5px dashed salmon;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .text_blurb {
 
 	color: sienna;
 	font-family: Rockwell ;
-
 }
 
 /* Values for the second textbox */
@@ -133,9 +142,42 @@ body {
 
 #course_logistics {
 	color:  sienna;
-	fontsize:  110%;
+	fontsize: 110%;
 	font-family: Rockwell;
 }
+
+#anon_feedback{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 20px;
+}
+
+textarea{
+	font-size: 15px;
+	margin: 5px;
+}
+
+button{
+	background-color: antiquewhite;
+	padding: 10px;
+	margin: 10px;
+	font-size: 16px;
+	border-radius: 15px;
+	border-color: greenyellow;
+}
+button:hover{
+	background-color: white;
+	transition-duration: .3s;
+	box-shadow: 0 5px 10px rgb(173, 168, 168);
+}
+
 
 /*FOOTER SHOULD BE PRESENT IN EVERY CSS*/
 .footer {
