@@ -74,6 +74,11 @@ a:active{
 	text-decoration-color: greenyellow;
 }
 
+#sticky_top{
+	position: sticky;
+	top: 0;
+}
+
 /* THE ABOVE SHOULD BE IN EVERY CSS FILE! */
 
 body {
@@ -132,18 +137,14 @@ body {
 	font-family: Rockwell;
 }
 
-#sticky_top{
-	position: sticky;
-	top: 0;
-}
-
+/*FOOTER SHOULD BE PRESENT IN EVERY CSS*/
 .footer {
 	margin-top: 100px;
 	color: darkmagenta;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 	gap: 10px, 10px;
-	
+	align-items: center;
 }
