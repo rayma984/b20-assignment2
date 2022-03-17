@@ -182,7 +182,7 @@ button:hover{
 /*FOOTER SHOULD BE PRESENT IN EVERY CSS*/
 
 /*for when its a phone or tablet view */
-/*PUT MOBILE ADJUSTMENTS HERE*/
+/*PUT MOBILE ADJUSTMENTS HERE*/ D
 @media all and (max-width: 720px){
 	body{
 		background: cornflowerblue;
