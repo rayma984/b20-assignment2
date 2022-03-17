@@ -1,0 +1,90 @@
+title {
+	color: black;
+}
+
+
+#welcome {
+	background-image: url("hi.jpg");
+	margin:auto;
+	border-style: solid;
+	color: black;
+
+	max-height:min-content;
+}
+
+#welcome_text{
+	background-color: aliceblue;
+	color:black;
+	font-size: 25px;
+	max-width: min-content;
+	margin:auto;
+}
+
+.header{
+	order: 1;
+	text-align: center;
+	font-family:Courier New;
+	font-size:  210%;
+	border-style: solid;
+	border-color: black;
+	color: salmon;
+	background-image: url("n.gif");
+	max-height: 150px;
+	width: 100%;
+
+	justify-content: center;
+	flex-wrap: wrap;
+	
+}
+#sticky_top{ /*the flexbox containing the header and navbar*/
+	display:flex;
+	position: sticky;
+	top: 0;
+	align-items: center;
+	flex-direction: column;
+
+}
+
+
+
+.navigation_bar{
+	order: 2;
+	display: flex;
+	border-style: solid;
+	height: 30px;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 120%;
+	background-color: salmon;
+	text-decoration: none;
+	width: 100%;
+	align-items: stretch;
+	flex-wrap: wrap;
+}
+
+.nav_button{
+	border-style: outset;
+	background-color:whitesmoke;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	border-color: blue;
+
+	padding-left: 20px;
+	padding-right: 20px;
+}
+/*define behaviour for links */
+a:link {
+	text-decoration: none;
+}
+a:visited{
+	text-decoration: underline;
+}
+a:hover{
+	text-decoration: underline;
+	text-shadow: blueviolet;
+	text-decoration-color: black;
+}
+a:active{
+	color:aqua;
+	text-decoration: underline;
+	text-decoration-color: greenyellow;
+}
