@@ -191,21 +191,39 @@ button:hover{
 		color:aquamarine
 	}
 
+/*below is the header section*/
 	.navigation_bar{
 		order: 2;
 		display: flex;
 		border-style: solid;
-		height: 30px;
 		flex-direction: column;
-		justify-content: space-between;
-		font-size: 120%;
+		font-size: 90%;
 		background-color: salmon;
 		text-decoration: none;
-		width: 100%;
-		align-items: stretch;
-		flex-wrap: wrap;
+		
 	}
+	#sticky_top{ /*the flexbox containing the header and navbar*/
+		display:flex;
+		position: sticky;
+		left: 0;
+		align-items:flex-start;
+		flex-direction: column;
+	}
+	.header{
+		order: 1;
+		text-align: center;
+		font-family:Courier New;
+		font-size:  150%;
+		border-style: solid;
+		border-color: black;
+		color: salmon;
+		background-image: url("n.gif");
+		max-height: 150px;
+		width: 100%;
 	
+		justify-content: center;
+		flex-wrap: wrap;		
+	}
 }
 
 
