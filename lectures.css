@@ -1,15 +1,16 @@
 title {
-	color: black;
+	color: green;
 }
 
 
 #welcome {
 	background-image: url("hi.jpg");
-	margin:auto;
 	border-style: solid;
 	color: black;
-
 	max-height:min-content;
+	text-align: center;
+	font-family:papyrus;	
+	font-size: 150%;	
 }
 
 #welcome_text{
@@ -87,4 +88,18 @@ a:active{
 	color:aqua;
 	text-decoration: underline;
 	text-decoration-color: greenyellow;
+}
+
+body {
+	color:  salmon;
+	background: rgb(255, 255, 206);
+	font-size: 120%;
+}
+
+
+
+
+.divider {
+	border-top: 5px dashed salmon;
+	margin-top: 20px;
 }
