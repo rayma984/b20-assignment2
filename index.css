@@ -18,11 +18,13 @@ title {
 
 	text-align: center;
 	font-family:Courier New;
-	font-size:  200%;
+	font-size:  210%;
 	border-style: solid;
 	border-color: salmon;
 	color: salmon;
 	background-image: url("n.gif");
+	
+	max-height: 150px;
 }
 
 /*
@@ -33,12 +35,28 @@ values for the first flexbox
 	display: flex;
 	margin-top: 10px;
 	border-style: solid;
+	border-color: black;
 	height: 30px;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	font-size: 120%;
-
+	background-color: rgb(11, 97, 211);
+	text-decoration: none;
 }
+
+.nav_button{
+	border-style: solid;
+	background-color: white;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	border-style:hidden;
+	border-color: aqua;
+}
+/*define behaviour for links */
+a:link, visited {
+	text-decoration: none;
+}
+
+
 
 body {
 	color:  salmon;
@@ -95,6 +113,11 @@ body {
 	color:  sienna;
 	fontsize:  110%;
 	font-family: Rockwell;
+}
+
+#sticky_top{
+	position: sticky;
+	top: 0;
 }
 
 .footer {
