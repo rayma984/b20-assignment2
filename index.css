@@ -32,6 +32,7 @@ title {
 	max-height: 150px;
 	width: 100%;
 
+	justify-content: center;
 	flex-wrap: wrap;
 	
 }
@@ -43,9 +44,8 @@ title {
 	flex-direction: column;
 
 }
-/*
-values for the first flexbox 
-*/
+
+
 
 .navigation_bar{
 	order: 2;
@@ -68,8 +68,8 @@ values for the first flexbox
 	font-family:Georgia, 'Times New Roman', Times, serif;
 	border-color: blue;
 
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 /*define behaviour for links */
 a:link {
@@ -89,13 +89,13 @@ a:active{
 	text-decoration-color: greenyellow;
 }
 
+
 /* THE ABOVE SHOULD BE IN EVERY CSS FILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 body {
 	color:  salmon;
 	background: rgb(255, 255, 206);
 	font-size: 120%;
-
 }
 
 #welcome{
@@ -180,6 +180,17 @@ button:hover{
 
 
 /*FOOTER SHOULD BE PRESENT IN EVERY CSS*/
+
+/*for when its a phone or tablet view */
+/*PUT MOBILE ADJUSTMENTS HERE*/
+@media all and (max-width: 720px){
+	body{
+		background: cornflowerblue;
+		color:aquamarine
+	}
+}
+
+
 .footer {
 	margin-top: 100px;
 	color: darkmagenta;
