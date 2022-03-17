@@ -1,17 +1,23 @@
 
-
 title {
 	color: green;
 }
 
 #welcome {
 	background-image: url("hi.jpg");
-	
-}
-#welcome span {
-	background-color: beige;
+	margin:auto;
 	border-style: solid;
 	color: black;
+
+	max-height:min-content;
+}
+
+#welcome_text{
+	background-color: aliceblue;
+	color:black;
+	font-size: 25px;
+	max-width: min-content;
+	margin:auto;
 }
 
 .header{
@@ -20,7 +26,7 @@ title {
 	font-family:Courier New;
 	font-size:  210%;
 	border-style: solid;
-	border-color: salmon;
+	border-color: black;
 	color: salmon;
 	background-image: url("n.gif");
 	
@@ -33,9 +39,7 @@ values for the first flexbox
 
 .navigation_bar{
 	display: flex;
-	margin-top: 10px;
 	border-style: solid;
-	border-color: black;
 	height: 30px;
 	flex-direction: row;
 	justify-content: space-between;
@@ -46,17 +50,31 @@ values for the first flexbox
 
 .nav_button{
 	border-style: solid;
-	background-color: white;
+	background-color: beige;
 	font-family:Georgia, 'Times New Roman', Times, serif;
 	border-style:hidden;
-	border-color: aqua;
 }
 /*define behaviour for links */
-a:link, visited {
+a:link {
 	text-decoration: none;
 }
+a:visited{
+	text-decoration: underline;
+}
+a:hover{
+	text-decoration: underline;
+	text-shadow: blueviolet;
+	text-decoration-color: black;
+}
+a:active{
+	background-color: aqua;
+	background-image: url("hi.jpg");
+	color:black;
+	text-decoration: underline;
+	text-decoration-color: greenyellow;
+}
 
-
+/* THE ABOVE SHOULD BE IN EVERY CSS FILE! */
 
 body {
 	color:  salmon;
@@ -73,7 +91,7 @@ body {
 
 .divider {
 	border-top: 5px dashed salmon;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .text_blurb {
@@ -100,7 +118,6 @@ body {
 	color: saddlebrown;
 	border-color: salmon;
 	border-style: solid;
-	border-spacing: ;
 }
 
 .headings {
