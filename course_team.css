@@ -18,7 +18,7 @@
 	border-style: solid;
 	border-color: black;
 	color: lightgoldenrodyellow;
-	background-image: url("n1.gif");
+	background-image: url("team.png");
 	max-height: min-content;
 	width: 100%;
 
@@ -187,7 +187,12 @@ body {
 	font-weight: bold;
 }
 
-
+@media all and (max-width: 720px){
+	body{
+		background: rgb(102, 141, 214);
+		color:aquamarine
+	}
+}
 
 .footer {
 	margin-top: 100px;
