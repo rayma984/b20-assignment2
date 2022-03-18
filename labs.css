@@ -88,15 +88,41 @@ a:active{
 	text-decoration-color: greenyellow;
 }
 
+.table{
+	display:table;
+	border-collapse:collapse;
+	text-align: center;
+	margin-left:auto; 
+    margin-right:auto;
+}
 
+.row
+{
+	display:table-row;
+	border: 1px solid black;
 
+}
 
+.cell
+{
+	display:table-cell;
+	border: 1px solid black;
+	padding-left: 50px;
+	padding-right: 50px;
+}
 
+.divider {
+	border-top: 5px dashed salmon;
+	margin-top: 20px;
+}
 
-
+body {
+	color:  salmon;
+	background: rgb(255, 255, 206);
+	font-size: 120%;
+}
 
 .footer {
-	margin-top: 100px;
 	color: darkmagenta;
 	display: flex;
 	flex-direction: column;
