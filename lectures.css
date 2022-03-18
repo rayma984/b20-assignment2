@@ -135,6 +135,30 @@ body {
 	font-size: 120%;
 }
 
+@media all and (max-width: 720px){
+	body{
+		background: rgb(102, 141, 214);
+		color:aquamarine
+	}
+
+	.cell{
+		display:table-cell;
+		border: 1px solid black;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 90%;
+		padding-bottom: 5px;
+	}
+	.header{
+		font-size:  140%;
+		max-height: 100px;
+	}
+	.navigation_bar{
+		height: 90px;
+		font-size: 100%;
+	}
+}
+
 .footer {
 	color: darkmagenta;
 	display: flex;
