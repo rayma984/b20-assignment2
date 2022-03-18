@@ -88,6 +88,19 @@ a:active{
 	text-decoration-color: greenyellow;
 }
 
+.box{
+
+	display:grid;
+	grid-template-rows: 50px 500px;
+	grid-template-columns: 900px 850px;
+	justify-content: center;
+
+}
+
+h3{
+	padding-left: 100px;
+}
+
 .table{
 	display:table;
 	border-collapse:collapse;
