@@ -1,8 +1,11 @@
 
 #sticky_top{
-	display: flex;
+	display:flex;
 	position: sticky;
+	top: 0;
+	align-items: center;
 	flex-direction: column;
+
 }
 
 
@@ -24,7 +27,23 @@
 	
 }
 
-
+/*define behaviour for links */
+a:link {
+	text-decoration: none;
+}
+a:visited{
+	text-decoration: underline;
+}
+a:hover{
+	text-decoration: underline;
+	text-shadow: blueviolet;
+	text-decoration-color: black;
+}
+a:active{
+	color:aqua;
+	text-decoration: underline;
+	text-decoration-color: greenyellow;
+}
 
 /* for the flex items in navbar*/
 

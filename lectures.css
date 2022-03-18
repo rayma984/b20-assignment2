@@ -14,10 +14,14 @@ title {
 }
 
 #welcome_text{
-	background-color: aliceblue;
+	background-color: saddlebrown;
+	color:lightgoldenrodyellow;
 	color:black;
 	font-size: 25px;
-	max-width: min-content;
+	max-width: max-content;
+	max-height:  min-content;
+	border-radius: 6px;
+	padding: 7px;
 	margin:auto;
 }
 
@@ -59,6 +63,8 @@ title {
 	width: 100%;
 	align-items: stretch;
 	flex-wrap: wrap;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 .nav_button{
@@ -119,7 +125,7 @@ a:active{
 }
 
 .divider {
-	border-top: 5px dashed salmon;
+	border-top: 5px dashed orangered;
 	margin-top: 20px;
 }
 
