@@ -1,8 +1,10 @@
 #sticky_top{
-	display: flex;
+	display:flex;
 	position: sticky;
+	top: 0;
+	align-items: center;
 	flex-direction: column;
-	max-width:fit-content;
+
 }
 
 
@@ -16,11 +18,12 @@
 	border-color: black;
 	color: beige;
 	background-image: url("n2.gif");
-	max-height: min-content;
+	max-height: 150px;
+	width: 100%;
 	
 	background-size: contain;
-
-	
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 
