@@ -113,6 +113,7 @@ border-radius: 12px;
 #team {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 #team .profile .position {
@@ -166,9 +167,8 @@ border-radius: 12px;
 	
 	font-family: Rockwell;
 	font-weight: bold;
-	justify-content: center;
 	border-style: solid;
-	
+	text-align: center;
 
 
 }
@@ -182,7 +182,7 @@ body {
 
 
 #blurb {
-	font-size: 110%;
+	font-size: 20px;
 	font-family: Calibri;
 	font-weight: bold;
 }
