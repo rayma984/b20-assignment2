@@ -149,7 +149,7 @@ body {
 
 #course_logistics {
 	color:  sienna;
-	fontsize: 110%;
+	font-size: 110%;
 	font-family: Rockwell;
 }
 
@@ -192,7 +192,7 @@ button:hover{
 /*PUT MOBILE ADJUSTMENTS HERE!*/ 
 @media all and (max-width: 720px){
 	body{
-		background: cornflowerblue;
+		background: rgb(102, 141, 214);
 		color:aquamarine
 	}
 
@@ -228,6 +228,36 @@ button:hover{
 	
 		justify-content: center;
 		flex-wrap: wrap;		
+	}
+	.headings {
+		color: whitesmoke;
+		font-size: 140%;
+		font-family: Courier New;
+	}
+	.upper {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		color: whitesmoke;
+		font-size: 100%;
+		border-color: salmon;
+		border-style: solid;
+	}
+	.lower {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		color: whitesmoke;
+		border-color: salmon;
+		border-style: solid;
+		font-size: small;
+	}
+	p{
+		color:aliceblue;
+		font-size: smaller;
+	}
+	.cell_item{
+		border-style: groove;
 	}
 }
 
