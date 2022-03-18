@@ -1,7 +1,5 @@
 hi.jpg: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F693272936369926707%2F&psig=AOvVaw1omIleaP2twFIE4VF6uphW&ust=1647645700925000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNjy496kzvYCFQAAAAAdAAAAABAO
 
-hi1.png: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fipng%2Fu2q8y3w7r5e6i1y3_pokemon-bulbasaur-pokemon-bulbasaur-pixel-art%2F&psig=AOvVaw1ODJIGeTmlYAWGwY1pAn2J&ust=1647645804004000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjio4qlzvYCFQAAAAAdAAAAABAD
-
 n.gif: https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fgifs%2Fhot-meme-bill-gates-3o6Zt9iWFMMYUZYjrW&psig=AOvVaw142brxzvwConQ0RVaNgDZy&ust=1647645844035000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIjM-56lzvYCFQAAAAAdAAAAABAD
 
 n1.gif: https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Favengers-assemble-invincible-guerre-gif-12783487&psig=AOvVaw3bam8_MeGrew_e_GM0vAiu&ust=1647645881869000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIjQmrClzvYCFQAAAAAdAAAAABAO
@@ -9,4 +7,7 @@ n1.gif: https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Fave
 n2.gif: https://www.google.com/url?sa=i&url=https%3A%2F%2Fgfycat.com%2Fgifs%2Fsearch%2Fdanger&psig=AOvVaw0mdyxx1fOXUFIVBmu870sM&ust=1647645931075000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIiztcalzvYCFQAAAAAdAAAAABAD
 
 team.png https://screenrant.com/avatar-the-last-airbender-highest-lowest-points/ 
+
 h12.png : https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seekpng.com%2Fima%2Fu2e6y3w7o0o0q8u2%2F&psig=AOvVaw0n4wO6m7dfeDbBp6iV3yAu&ust=1647655408044000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLi18-3IzvYCFQAAAAAdAAAAABAN
+
+squid.png https://www.youtube.com/watch?v=gFzaaXywPdc
