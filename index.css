@@ -15,11 +15,16 @@ title {
 }
 
 #welcome_text{
-	background-color: aliceblue;
-	color:black;
+	background-color: saddlebrown;
+	color:lightgoldenrodyellow;
 	font-size: 25px;
 	max-width: min-content;
+	max-height:  min-content;
+	border-style: solid;
+	border-radius: 6px;
+	padding: 7px;
 	margin:auto;
+
 }
 
 .header{
