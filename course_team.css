@@ -84,7 +84,7 @@ a:active{
 	margin: auto;
 	border-style: solid;
 	color: black;
-border-radius: 12px;
+	border-radius: 12px;
 	max-height:min-content;
 }
 
@@ -139,7 +139,8 @@ border-radius: 12px;
 	
 	padding-left: 6px;
 	font-size: 120%;
-	background-color: aliceblue;
+	background-color: rgb(140, 235, 116);
+	color: white;
 	text-align: center;
 	font-family: Courier New;
 	font-weight: bold;

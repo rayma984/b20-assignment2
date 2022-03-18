@@ -71,11 +71,12 @@ title {
 
 .nav_button{
 	border-style: outset;
-	background-color:whitesmoke;
+	background-color:lightgoldenrodyellow;
 	font-family:Georgia, 'Times New Roman', Times, serif;
 	border-color: blue;
-
+	color: saddlebrown;
 	padding-left: 20px;
+	border-radius: 12px;
 	padding-right: 20px;
 }
 /*define behaviour for links */
@@ -197,38 +198,6 @@ button:hover{
 	}
 
 /*below is the header section*/
-	.navigation_bar{
-		order: 2;
-		display: flex;
-		border-style: solid;
-		flex-direction: column;
-		font-size: 90%;
-		background-color: salmon;
-		text-decoration: none;
-		
-	}
-	#sticky_top{ /*the flexbox containing the header and navbar*/
-		display:flex;
-		position: sticky;
-		left: 0;
-		align-items:flex-start;
-		flex-direction: column;
-	}
-	.header{
-		order: 1;
-		text-align: center;
-		font-family:Courier New;
-		font-size:  150%;
-		border-style: solid;
-		border-color: black;
-		color: salmon;
-		background-image: url("n.gif");
-		max-height: 150px;
-		width: 100%;
-	
-		justify-content: center;
-		flex-wrap: wrap;		
-	}
 	.headings {
 		color: whitesmoke;
 		font-size: 140%;
