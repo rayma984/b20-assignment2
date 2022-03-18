@@ -1,8 +1,10 @@
 #sticky_top{
-	display: flex;
+	display:flex;
 	position: sticky;
+	top: 0;
+	align-items: center;
 	flex-direction: column;
-	max-width:fit-content;
+
 }
 
 
@@ -16,11 +18,12 @@
 	border-color: black;
 	color: beige;
 	background-image: url("n2.gif");
-	max-height: min-content;
+	max-height: 150px;
+	width: 100%;
 	
 	background-size: contain;
-
-	
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 
@@ -60,13 +63,14 @@
 	font-size: 120%;
 	font-family: Courier New;
 	font-weight: bold;
-	color: saddlebrown;
+	color: rgb(57, 11, 207);
+	text-align: center;
 }
 
 
 
 .divider {
-	border-top: 5px dashed saddlebrown;
+	border-top: 5px dashed salmon;
 	margin-top: 20px;
 }
 
@@ -74,7 +78,7 @@
 .assignment_stats {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 
 .assignment_block {
@@ -84,6 +88,10 @@
 	font-weight: bold;
 }
 
+h3{
+	font-weight:bolder;
+	color:black;
+}
 
 
 /*define behaviour for links */
@@ -105,7 +113,9 @@ a:active{
 }
 
 
-
+h3{
+	font-weight: bold;
+}
 
 body {
 	background-color: lightgoldenrodyellow;
