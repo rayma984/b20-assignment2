@@ -29,7 +29,8 @@ title {
 	border-style: solid;
 	border-color: black;
 	color: salmon;
-	background-image: url("a.gif");
+	background-image: url("hi2.png");
+	background-size: contain;
 	max-height: 250px;
 	width: 100%;
 
