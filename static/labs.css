@@ -44,7 +44,6 @@ title {
 	top: 0;
 	align-items: center;
 	flex-direction: column;
-
 }
 
 .navigation_bar{
@@ -60,6 +59,7 @@ title {
 	width: 100%;
 	align-items: stretch;
 	flex-wrap: wrap;
+	flex-flow: row wrap;
 }
 
 .nav_button{
@@ -67,9 +67,9 @@ title {
 	background-color:whitesmoke;
 	font-family:Georgia, 'Times New Roman', Times, serif;
 	border-color: blue;
-
-	padding-left: 20px;
-	padding-right: 20px;
+	font-size: 17px;
+	padding-left: 12px;
+	padding-right: 12px;
 }
 /*define behaviour for links */
 a:link {
