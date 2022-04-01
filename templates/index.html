@@ -16,15 +16,16 @@
         <!--Intuition: a navigation bar is an unordered list of links, figure out horizontal stuff in CSS-->
         <div class="navigation_bar">          
             <strong>
-                <a href="index.html">Home</a>
-                <a href="course_team.html">Course Team</a>
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('course_team') }}">Course Team</a>
                 <a href="syllabus.pdf">Syllabus</a>
-                <a href="lectures.html">Lectures</a>
-                <a href="weekly_schedule.html">Weekly Schedule</a>
+                <a href="{{ url_for('weekly_schedule') }}">Weekly Schedule</a>
                 <a href="https://markus.utsc.utoronto.ca/cscb20w22/assignments">Markus</a>
                 <a href="https://piazza.com/class/kxj5alixpjg4ft">Piazza</a>
-                <a href="assignments.html">Assignments</a>
-                <a href="labs.html">Labs</a>
+                <a href="{{ url_for('assignments') }}">Assignments</a>
+                <a href="{{ url_for('labs') }}">Labs</a>
             </strong>
         </div>
 
@@ -43,6 +44,8 @@
         </div>    
     </div>
     
+
+
     <!--a horizontal divider line-->
     <hr class="divider">
 

@@ -69,10 +69,10 @@ for r in result:
 
 
 @app.route('/')
-@app.route('/home')
-def home():
-    pagename = 'home'
-    return render_template('home.html', pagename = pagename)
+@app.route('/index')
+def index():
+    pagename = 'index'
+    return render_template('index.html', pagename = pagename)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
