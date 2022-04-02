@@ -33,6 +33,8 @@ class Notes(db.Model):
     def __repr__(self):
         return f"Notes('{self.title}', '{self.date_posted}')"
 
+"""  db stuff
+
 #Filtering in SQLAlchemy
 print('*******Filtering 1*******')
 for person in db.session.query(Person).filter(Person.id == 5):
@@ -67,6 +69,7 @@ result = db.engine.execute(sql)
 for r in result:
     print(r['title'])
 
+"""
 
 @app.route('/')
 @app.route('/index')
@@ -136,6 +139,8 @@ def logout():
     session.pop('name', default = None)
     return redirect(url_for('home'))
 
+""" DB STUFF
+
 def query_notes():
     query_notes = Notes.query.all()
     return query_notes
@@ -149,6 +154,8 @@ def add_users(reg_details):
     person = Person(username = reg_details[0], email = reg_details[1], password = reg_details[2])
     db.session.add(person)
     db.session.commit()
+
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)
