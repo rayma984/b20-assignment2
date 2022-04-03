@@ -74,8 +74,23 @@ for r in result:
 @app.route('/')
 @app.route('/index')
 def index():
-    pagename = 'index'
-    return render_template('index.html', pagename = pagename)
+    return render_template('index.html')
+
+@app.route('/course_team')
+def course_team():
+    return render_template('course_team.html')
+
+@app.route('/weekly_schedule')
+def weekly_schedule():
+    return render_template('weekly_schedule.html')
+
+@app.route('/assignments')
+def assignments():
+    return render_template('assignments.html')
+
+@app.route('/labs')
+def labs():
+    return render_template('labs.html')
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
