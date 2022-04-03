@@ -4,7 +4,7 @@ title {
 }
 
 #welcome {
-	background-image: url("hi.jpg");
+	background-image: url("../pics/hi.jpg");
 	margin:auto;
 	border-style: solid;
 	color: black;
@@ -32,7 +32,7 @@ title {
 	border-style: solid;
 	border-color: black;
 	color: salmon;
-	background-image: url("../templates/n.gif");
+	background-image: url("../pics/n.gif");
 	max-height: 120px;
 	width: 100%;
 	flex-wrap: wrap;
@@ -115,6 +115,10 @@ body {
 .divider {
 	border-top: 5px dashed salmon;
 	margin-top: 20px;
+}
+
+#prompt{
+	text-align: center;
 }
 
 .text_blurb {

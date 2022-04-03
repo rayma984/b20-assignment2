@@ -64,7 +64,15 @@
 
     <hr class="divider">
 
-    <h3 class= "headings" ><u>Contact details:</u></h3>
+    <div id="prompt">
+        <p>To view the rest of the website, please <strong>log in</strong> or <strong>register</strong>.</p>
+        <p>You can use the links in the navigation bar, or use the following links:</p>
+        <a href="{{ url_for('login') }}">Login</a> <a href="{{ url_for('register') }}">Register</a>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class= "headings">Contact details:</h3>
 
     <div class="contact_info">
         
@@ -85,22 +93,9 @@
 
     <hr class="divider">
 
-    <div id="anon_feedback">
-        <h2 class = "headings"><u>Anonymous Feedback:</u></h2>
-        <!--
-        <form>
-            <label for="feedback">Enter Feedback</label>
-            <textarea id="feedback" cols="30" rows="5" placeholder="Enter text here..."></textarea> 
-            <button type="submit">Submit</button>
-        </form>
-        -->
-    </div>
-
-    <hr class="divider">
-
     <div class="footer">      
         <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a></div>
-        <div><img src="UofT.png" class="footer_pic" alt="UofT is no more"></div>
+        <div><img src="../static/pics/UofT.png" class="footer_pic" alt="UofT is no more"></div>
         <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a></div>
         <div><p class="signature">Site designed by Raymond Moy</p></div>
     </div>
