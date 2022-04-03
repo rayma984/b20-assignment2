@@ -94,8 +94,9 @@ def labs():
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
+    pagename = 'Register'
     if request.method == 'GET':
-        return render_template('register.html')
+        return render_template('register.html', pagename = pagename)
     else:
         username = request.form['Username']
         email = request.form['Email']
