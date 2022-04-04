@@ -4,8 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
 
-
-'''Omg whats all this ?'''
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
 
