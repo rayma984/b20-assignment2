@@ -8,15 +8,21 @@ hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
 
 app = Flask(__name__)
+<<<<<<< Updated upstream
 app.config['SECRET_KEY'] = hush_hush 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
+=======
+app.config['SECRET_KEY'] = 'secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
+>>>>>>> Stashed changes
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
 class Person(db.Model):
     __tablename__ = 'Person'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, unique = True)
     username = db.Column(db.String(20), unique=True, nullable = False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(20), nullable = False)
@@ -27,7 +33,7 @@ class Person(db.Model):
 
 class Notes(db.Model):
     __tablename__ = 'Notes'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, unique = True)
     title= db.Column(db.String(20), nullable = False)
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
@@ -36,8 +42,52 @@ class Notes(db.Model):
     def __repr__(self):
         return f"Notes('{self.title}', '{self.date_posted}')"
 
+<<<<<<< Updated upstream
 """  db stuff
 
+=======
+class Account(db.Model):
+    __tablename__ = 'Account'
+    Account_id = db.Column(db.Integer, primary_key = True, unique = True)
+    username = db.Column(db.String(20), unique=True, nullable = False)
+    password = db.Column(db.String(20), nullable = False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    type = db.Column(db.String(10), nullable=False)
+
+class Student(db.Model):
+    __tablename__ = 'Student'
+    username = db.Column(db.String(20), unique=True, nullable = False) 
+    Student_id = db.Column(db.Integer, db.ForeignKey('Account.Account_id'), nullable = False, primary_key = True)
+
+class Instructor(db.Model):
+    __tablename__ = 'Instructor'
+    username = db.Column(db.String(20), unique=True, nullable = False) 
+    Instructor_id = db.Column(db.Integer, db.ForeignKey('Account.Account_id'), nullable = False, primary_key = True)
+
+class Marks(db.Model):
+    __tablename__ = 'Marks'
+    student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
+    instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
+    accessment = db.Column(db.String(20), nullable = False, primary_key = True)
+    grade = db.Column(db.Integer, nullable = False)
+
+class Feedback(db.Model):
+    __tablename__ = 'Feedback'
+    q1 = db.Column(db.Integer, nullable = False)
+    q2 = db.Column(db.Integer, nullable = False)
+    q3 = db.Column(db.Integer, nullable = False)
+    q4 = db.Column(db.Integer, nullable = False)
+    instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
+    Feed_id = db.Column(db.Integer, primary_key = True, unique = True, nullable = False)
+
+class Remark(db.Model):
+    __tablename__ = 'Remark'
+    accessment = db.Column(db.String(20),db.ForeignKey('Marks.accessment'), nullable = False, primary_key = True)
+    student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
+    blurb = db.Column(db.String(100), unique = False, nullable = False)
+
+"""
+>>>>>>> Stashed changes
 #Filtering in SQLAlchemy
 print('*******Filtering 1*******')
 for person in db.session.query(Person).filter(Person.id == 5):
@@ -72,8 +122,12 @@ result = db.engine.execute(sql)
 for r in result:
     print(r['title'])
 
+<<<<<<< Updated upstream
 """
 # ROUTING FOR NAVBAR
+=======
+  """
+>>>>>>> Stashed changes
 @app.route('/')
 @app.route('/index')
 def index():
