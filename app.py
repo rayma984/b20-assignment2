@@ -70,7 +70,7 @@ for r in result:
     print(r['title'])
 
 """
-
+# ROUTING FOR NAVBAR
 @app.route('/')
 @app.route('/index')
 def index():
@@ -133,6 +133,8 @@ def login():
             session['name'] = username
             session.permanent = True
             return redirect(url_for('home'))
+
+# ROUTING FOR NAVBAR
 
 @app.route('/notes', methods = ['GET', 'POST'])
 def notes():

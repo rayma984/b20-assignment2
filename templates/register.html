@@ -2,6 +2,9 @@
 
 {% block content %}
 
+    <p id="register_prompt">Please enter your account details to sign up</p>
+    <br>
+
     <form action="http://127.0.0.1:5000/register" method = "post">
         <label for="username">Username</label>
         <input type="text" id="Username" name="Username">
@@ -10,7 +13,15 @@
         <input type="text" id="Email" name="Email">
 
         <label for="Password">Password</label>
-        <textarea id="text" name="Password"></textarea>
+        <input type="text" id="Password" name="Password">
+        
+        <p>Please select your account type.</p>
+
+        <input type="radio" id="Acc_Type" name="Acc_Type" value="Student" checked>
+        <label for="Student">Student</label>
+
+        <input type="radio" id="Acc_Type" name="Acc_Type" value="Instructor">
+        <label for="Instructor">Instructor</label>
 
         <button type="register">Register</button>
     </form>
