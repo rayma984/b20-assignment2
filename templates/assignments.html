@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="assignments.css">  
+    <link rel="stylesheet" href="../static/css/assignments.css">  
     <title>CSCB20 ASSIGNMENTS</title> <!---name tentative-->
 </head>
 
@@ -13,44 +13,19 @@
         </div>
 
             <!--Intuition: a navigation bar is an unordered list of links, figure out horizontal stuff in CSS-->
-            <div class="navigation_bar">
-            
-                <div class="nav_button">
-                    <a href="index.html">Home</a>
-                </div>
-
-                <div class="nav_button">
-                    <a href="course_team.html">Course Team</a>
-                </div>
-
-                <div class="nav_button">
+            <div class="navigation_bar">           
+                <strong>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                    <a href="{{ url_for('login') }}">Login</a>                             
+                    <a href="{{ url_for('course_team') }}">Course Team</a>
                     <a href="syllabus.pdf">Syllabus</a>
-                </div>
-
-                <div class="nav_button">
-                    <a href="lectures.html">Lectures</a>
-                </div>
-
-                <div class="nav_button">
-                    <a href="weekly_schedule.html">Weekly Schedule</a>
-                </div>
-
-                <div class="nav_button">
+                    <a href="{{ url_for('weekly_schedule') }}">Weekly Schedule</a>
                     <a href="https://markus.utsc.utoronto.ca/cscb20w22/assignments">Markus</a>
-                </div>
-
-                <div class="nav_button">
                     <a href="https://piazza.com/class/kxj5alixpjg4ft">Piazza</a>
-                </div>
-
-                <div class="nav_button">
-                    <a href="assignments.html">Assignments</a>
-                </div>
-
-                <div class="nav_button">
-                    <a href="labs.html">Labs</a>
-                </div>
-
+                    <a href="{{ url_for('assignments') }}">Assignments</a>
+                    <a href="{{ url_for('labs') }}">Labs</a>
+                </strong>
             </div>
 
         </div>
@@ -101,11 +76,11 @@
     </div>
 
 
-    <div class="footer">
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a>
-        <p class="signature">Site designed by Raymond Moy, Amodh Durve</p>
-        <img src="UofT.png" class="footer_pic" alt="UofT is no more">
-        <a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a>
+    <div class="footer">      
+        <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a></div>
+        <div><img src="../static/pics/UofT.png" class="footer_pic" alt="UofT is no more"></div>
+        <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a></div>
+        <div><p class="signature">Site designed by Raymond Moy</p></div>
     </div>
 
 </body>

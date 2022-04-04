@@ -1,30 +1,53 @@
-
-#sticky_top{
+#sticky_top{ /*the flexbox containing the header and navbar*/
 	display:flex;
 	position: sticky;
 	top: 0;
 	align-items: center;
 	flex-direction: column;
-
+	margin: 0 auto;
 }
-
-
-
 .header{
 	order: 1;
 	text-align: center;
 	font-family:Courier New;
-	font-size:  210%;
+	font-size:  190%;
 	border-style: solid;
 	border-color: black;
-	color: lightgoldenrodyellow;
-	background-image: url("team.png");
-	max-height: min-content;
+	color: salmon;
+	background-image: url("../pics/n.gif");
+	max-height: 120px;
 	width: 100%;
-
-	justify-content: center;
 	flex-wrap: wrap;
-	
+	padding-bottom: 10px;
+}
+
+.navigation_bar{
+	display: flex;
+	flex-direction: row;
+	margin: 0;
+	order: 2;
+	text-decoration: none;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background: #00ccff;
+	flex-wrap: wrap;
+	list-style: none;
+	justify-content: space-around;
+	align-items: center;
+	align-content: space-between;
+	width: 100%;
+	min-height: 50px;
+	font-size: large;
+	padding-top: 5px;
+}
+.navigation_bar a {
+	text-decoration: none;
+	padding: 10px;
+	color: white;
+	font-size: 25px;
+}
+.navigation_bar a:hover {
+	background: #008ebd;
 }
 
 /*define behaviour for links */
@@ -40,42 +63,10 @@ a:hover{
 	text-decoration-color: black;
 }
 a:active{
-	color:aqua;
+	color:black;
 	text-decoration: underline;
-	text-decoration-color: greenyellow;
+	text-decoration-color: white;
 }
-
-/* for the flex items in navbar*/
-
-.navigation_bar{
-	order: 2;
-	display: flex;
-	border-style: solid;
-	height: 30px;
-	flex-direction: row;
-	justify-content: space-between;
-	font-size: 120%;
-	background-color: saddlebrown;
-	text-decoration: none;
-	width: 100%;
-	align-items: stretch;
-	flex-wrap: wrap;
-	padding-top: 2px;
-	padding-bottom: 2px;
-}
-
-.nav_button{
-	border-style: outset;
-	background-color:lightgoldenrodyellow;
-	font-family:Georgia, 'Times New Roman', Times, serif;
-	border-color: blue;
-	color: saddlebrown;
-	padding-left: 20px;
-	border-radius: 12px;
-	padding-right: 20px;
-}
-
-
 
 
 #welcome {
