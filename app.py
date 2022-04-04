@@ -4,12 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
 
+<<<<<<< HEAD
 '''Omg whats all this ?'''
+=======
+hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
+#ripped off of flask's site for an example of a good secret key
+>>>>>>> 0d5449acd7935cfdf4e97fba4c7f6c64cee340fa
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret_key'
+app.config['SECRET_KEY'] = hush_hush 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
