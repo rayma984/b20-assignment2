@@ -7,6 +7,10 @@ from sqlalchemy import text # textual queries
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
 
+# https://piazza.com/class/kxj5alixpjg4ft?cid=289 for info on these sets
+students = set()
+instructors = set()
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
@@ -25,6 +29,7 @@ class Person(db.Model):
     def __repr__(self):
         return f"Person('{self.username}', '{self.email}')"
 
+#delete this shit before handing in lol
 class Notes(db.Model):
     __tablename__ = 'Notes'
     id = db.Column(db.Integer, primary_key = True, unique = True)
@@ -146,6 +151,9 @@ def register():
     else:
         username = request.form['Username']
         email = request.form['Email']
+        
+        #add registered users to the correct set
+
         hashed_password = bcrypt.generate_password_hash(request.form['Password']).decode('utf-8')
         reg_details =(
             username,
