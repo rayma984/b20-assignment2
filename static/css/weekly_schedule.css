@@ -10,7 +10,7 @@ title {
 	max-height:min-content;
 	text-align: center;
 	font-family:papyrus;	
-	font-size: 150%;				
+	font-size: 120%;				
 }
 
 #welcome_text{
@@ -25,55 +25,58 @@ title {
 	margin:auto;
 }
 
-.header{
-	order: 1;
-	text-align: center;
-	font-family:Courier New;
-	font-size:  210%;
-	border-style: solid;
-	border-color: black;
-	color: salmon;
-	background-image: url("squid.png");
-	max-height: 250px;
-	width: 100%;
-
-	justify-content: center;
-	flex-wrap: wrap;
-}
-
 #sticky_top{ /*the flexbox containing the header and navbar*/
 	display:flex;
 	position: sticky;
 	top: 0;
 	align-items: center;
 	flex-direction: column;
-
+	margin: 0 auto;
+}
+.header{
+	order: 1;
+	text-align: center;
+	font-family:Courier New;
+	font-size:  190%;
+	border-style: solid;
+	border-color: black;
+	color: salmon;
+	background-image: url("../pics/n.gif");
+	max-height: 120px;
+	width: 100%;
+	flex-wrap: wrap;
+	padding-bottom: 10px;
 }
 
 .navigation_bar{
-	order: 2;
 	display: flex;
-	border-style: solid;
-	height: 30px;
 	flex-direction: row;
-	justify-content: space-between;
-	font-size: 120%;
-	background-color: salmon;
+	margin: 0;
+	order: 2;
 	text-decoration: none;
-	width: 100%;
-	align-items: stretch;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background: #00ccff;
 	flex-wrap: wrap;
+	list-style: none;
+	justify-content: space-around;
+	align-items: center;
+	align-content: space-between;
+	width: 100%;
+	min-height: 50px;
+	font-size: large;
+	padding-top: 5px;
+}
+.navigation_bar a {
+	text-decoration: none;
+	padding: 10px;
+	color: white;
+	font-size: 25px;
+}
+.navigation_bar a:hover {
+	background: #008ebd;
 }
 
-.nav_button{
-	border-style: outset;
-	background-color:whitesmoke;
-	font-family:Georgia, 'Times New Roman', Times, serif;
-	border-color: blue;
-
-	padding-left: 20px;
-	padding-right: 20px;
-}
 /*define behaviour for links */
 a:link {
 	text-decoration: none;
@@ -87,9 +90,9 @@ a:hover{
 	text-decoration-color: black;
 }
 a:active{
-	color:aqua;
+	color:black;
 	text-decoration: underline;
-	text-decoration-color: greenyellow;
+	text-decoration-color: white;
 }
 
 .box{

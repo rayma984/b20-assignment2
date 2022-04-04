@@ -84,6 +84,10 @@ def course_team():
 def weekly_schedule():
     return render_template('weekly_schedule.html')
 
+@app.route('/lectures')
+def lectures():
+    return render_template('lectures.html')
+
 @app.route('/assignments')
 def assignments():
     return render_template('assignments.html')
