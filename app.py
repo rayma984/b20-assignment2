@@ -8,15 +8,9 @@ hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
 
 app = Flask(__name__)
-<<<<<<< Updated upstream
-app.config['SECRET_KEY'] = hush_hush 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
-=======
-app.config['SECRET_KEY'] = 'secret_key'
+app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
->>>>>>> Stashed changes
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
@@ -42,10 +36,6 @@ class Notes(db.Model):
     def __repr__(self):
         return f"Notes('{self.title}', '{self.date_posted}')"
 
-<<<<<<< Updated upstream
-"""  db stuff
-
-=======
 class Account(db.Model):
     __tablename__ = 'Account'
     Account_id = db.Column(db.Integer, primary_key = True, unique = True)
@@ -87,7 +77,6 @@ class Remark(db.Model):
     blurb = db.Column(db.String(100), unique = False, nullable = False)
 
 """
->>>>>>> Stashed changes
 #Filtering in SQLAlchemy
 print('*******Filtering 1*******')
 for person in db.session.query(Person).filter(Person.id == 5):
@@ -122,12 +111,8 @@ result = db.engine.execute(sql)
 for r in result:
     print(r['title'])
 
-<<<<<<< Updated upstream
 """
-# ROUTING FOR NAVBAR
-=======
-  """
->>>>>>> Stashed changes
+
 @app.route('/')
 @app.route('/index')
 def index():

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>CSCB20 {{pagename}}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/stu_template.css') }}">
+    </head>
+
+    <body>
+        <div id="sticky_top">
+            <div class="header">
+                <h2 >CSCB20 {{ pagename }}</h2>       
+            </div>
+    
+            <!--Intuition: a navigation bar is an unordered list of links, figure out horizontal stuff in CSS-->
+            <div class="navigation_bar">          
+                <strong>
+                    {% if session.name %} <!--for when user is logged in-->
+                    <!--will have to put another <IF> for user TYPE-->
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('course_team') }}">Course Team</a>
+                    <a href="{{ url_for('lectures') }}">Lectures</a>
+                    <a href="../static/docs/syllabus.pdf">Syllabus</a>
+                    <a href="{{ url_for('weekly_schedule') }}">Weekly Schedule</a>
+                    <a href="https://markus.utsc.utoronto.ca/cscb20w22/assignments">Markus</a>
+                    <a href="https://piazza.com/class/kxj5alixpjg4ft">Piazza</a>
+                    <a href="{{ url_for('assignments') }}">Assignments</a>
+                    <a href="{{ url_for('labs') }}">Labs</a>
+                    {% else %}
+                    <a href="{{ url_for('index') }}">Home</a> 
+                    <a href="{{ url_for('register') }}">Register</a>                                     
+                    <a href="{{ url_for('login') }}">Login</a>                    
+                    {% endif %}
+                </strong>
+            </div>
+    
+        </div>
+    
+        <hr class = "divider">
+        
+        {% block content %}
+        {% endblock %}
+        
+        <hr class="divider">
+
+        <div class="footer">      
+            <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of Computer Science at UofT</a></div>
+            <div><img src="../static/pics/UofT.png" class="footer_pic" alt="UofT is no more"></div>
+            <div><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">image source</a></div>
+            <div><p class="signature">Site designed by Raymond Moy</p></div>
+        </div>
+
+    </body>
+</html>
