@@ -3,6 +3,9 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
@@ -12,13 +15,26 @@ students = set()
 instructors = set()
 
 app = Flask(__name__)
+<<<<<<< Updated upstream
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
+=======
+
+app.config['SECRET_KEY'] = hush_hush 
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
+#engine = create_engine('sqlite:///ass3.db')
+
+>>>>>>> Stashed changes
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-class Person(db.Model):
+#base = declarative_base()
+"""
+class Person(base):
     __tablename__ = 'Person'
     id = db.Column(db.Integer, primary_key = True, unique = True)
     username = db.Column(db.String(20), unique=True, nullable = False)
@@ -26,11 +42,15 @@ class Person(db.Model):
     password = db.Column(db.String(20), nullable = False)
     notes = db.relationship('Notes', backref='author', lazy = True)
 
-    def __repr__(self):
-        return f"Person('{self.username}', '{self.email}')"
+    #def __repr__(self):
+        #return f"Person('{self.username}', '{self.email}')"
 
+<<<<<<< Updated upstream
 #delete this shit before handing in lol
 class Notes(db.Model):
+=======
+class Notes(base):
+>>>>>>> Stashed changes
     __tablename__ = 'Notes'
     id = db.Column(db.Integer, primary_key = True, unique = True)
     title= db.Column(db.String(20), nullable = False)
@@ -38,8 +58,14 @@ class Notes(db.Model):
     content = db.Column(db.Text, nullable=False)
     person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable = False)
 
+<<<<<<< Updated upstream
     def __repr__(self):
         return f"Notes('{self.title}', '{self.date_posted}')"
+=======
+    #def __repr__(self):
+        #return f"Notes('{self.title}', '{self.date_posted}')"
+"""
+>>>>>>> Stashed changes
 
 class Account(db.Model):
     __tablename__ = 'Account'
@@ -48,6 +74,9 @@ class Account(db.Model):
     password = db.Column(db.String(20), nullable = False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     type = db.Column(db.String(10), nullable=False)
+
+    def __repr__(self):
+        return f"Account('{self.username}', '{self.email}, {self.password}, {self.type}')"
 
 class Student(db.Model):
     __tablename__ = 'Student'
@@ -81,6 +110,7 @@ class Remark(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = False)
 
+##base.metadata.create_all(engine)
 """
 #Filtering in SQLAlchemy
 print('*******Filtering 1*******')
@@ -117,6 +147,12 @@ for r in result:
     print(r['title'])
 
 """
+<<<<<<< Updated upstream
+=======
+# ROUTING FOR NAVBAR
+
+
+>>>>>>> Stashed changes
 
 @app.route('/')
 @app.route('/index')
@@ -155,11 +191,14 @@ def register():
         #add registered users to the correct set
 
         hashed_password = bcrypt.generate_password_hash(request.form['Password']).decode('utf-8')
+        types= request.form['Acc_Type'] 
         reg_details =(
             username,
             email,
-            hashed_password
+            hashed_password,
+            types
         )
+        
         add_users(reg_details)
         flash('Registration Successful! Please login now:')
         return redirect(url_for('login'))
@@ -175,8 +214,8 @@ def login():
     else:
         username = request.form['Username']
         password = request.form['Password']
-        person = Person.query.filter_by(username = username).first()
-        if not person or not bcrypt.check_password_hash(person.password, password):
+        account = Account.query.filter_by(username = username).first()
+        if not account or not bcrypt.check_password_hash(Account.password, password):
             flash('Please check your login details and try again', 'error')
             return render_template('login.html')
         else:
@@ -211,7 +250,6 @@ def logout():
     session.pop('name', default = None)
     return redirect(url_for('home'))
 
-""" DB STUFF
 
 def query_notes():
     query_notes = Notes.query.all()
@@ -223,11 +261,9 @@ def add_notes(note_details):
     db.session.commit()
 
 def add_users(reg_details):
-    person = Person(username = reg_details[0], email = reg_details[1], password = reg_details[2])
-    db.session.add(person)
+    account = Account(username = reg_details[0], email = reg_details[1], password = reg_details[2], type = reg_details[3])
+    db.session.add(account)
     db.session.commit()
-
-"""
 
 if __name__ == '__main__':
     app.run(debug=True)
