@@ -66,13 +66,20 @@ class Account(db.Model):
 
 class Student(db.Model):
     __tablename__ = 'Student'
-    username = db.Column(db.String(20), unique=True, nullable = False) 
     Student_id = db.Column(db.Integer, db.ForeignKey('Account.Account_id'), nullable = False, primary_key = True)
+    username = db.Column(db.String(20), unique=True, nullable = True) 
+    def __repr__(self):
+        return f"Student('{self.username}, {self.Student_id}"
+
+
+    
 
 class Instructor(db.Model):
     __tablename__ = 'Instructor'
-    username = db.Column(db.String(20), unique=True, nullable = False) 
+    username = db.Column(db.String(20), unique=True, nullable = True) 
     Instructor_id = db.Column(db.Integer, db.ForeignKey('Account.Account_id'), nullable = False, primary_key = True)
+    def __repr__(self):
+        return f"Instructor('{self.username}, {self.Instructor_id}"
 
 class Marks(db.Model):
     __tablename__ = 'Marks'
@@ -96,7 +103,7 @@ class Remark(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = False)
 
-##base.metadata.create_all(engine)
+
 """
 #Filtering in SQLAlchemy
 print('*******Filtering 1*******')
@@ -217,10 +224,13 @@ def register():
         )
         if ((types == 'Student') == True):
             students.add(username)
+            add_users_student(reg_details)
         else:
             instructors.add(username)
-        
+            add_users_instructor(reg_details)
+
         add_users(reg_details)
+
         flash('Registration Successful! Please login now:')
         return redirect(url_for('login'))
 
@@ -296,9 +306,19 @@ def add_notes(note_details):
     db.session.add(note)
     db.session.commit()
 """
-
+    
 def add_users(reg_details):
     account = Account(username = reg_details[0], email = reg_details[1], password = reg_details[2], type = reg_details[3])
+    db.session.add(account)
+    db.session.commit()
+
+def add_users_student(reg_details):
+    student = Student(username = reg_details[0])
+    db.session.add(student)
+    db.session.commit()
+
+def add_users_instructor(reg_details):
+    account = Instructor(username = reg_details[0])
     db.session.add(account)
     db.session.commit()
 
