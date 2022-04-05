@@ -242,7 +242,8 @@ def login():
         #if user is recognised
         else:
             session['name'] = username
-
+            session['type'] = account.type
+            
             if (account.type == 'Student' ):
                 session.permanent = True
                 return redirect(url_for('stu_home'))
