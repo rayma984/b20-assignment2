@@ -23,35 +23,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-#base = declarative_base()
-"""
-class Person(base):
-    __tablename__ = 'Person'
-    id = db.Column(db.Integer, primary_key = True, unique = True)
-    username = db.Column(db.String(20), unique=True, nullable = False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(20), nullable = False)
-    notes = db.relationship('Notes', backref='author', lazy = True)
-
-    #def __repr__(self):
-        #return f"Person('{self.username}', '{self.email}')"
-
-class Notes(base):
-    __tablename__ = 'Notes'
-    id = db.Column(db.Integer, primary_key = True, unique = True)
-    title= db.Column(db.String(20), nullable = False)
-    date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable = False)
-
-<<<<<<< Updated upstream
-    def __repr__(self):
-        return f"Notes('{self.title}', '{self.date_posted}')"
-=======
-    #def __repr__(self):
-        #return f"Notes('{self.title}', '{self.date_posted}')"
-"""
-
 
 class Account(db.Model):
     __tablename__ = 'Account'
@@ -205,6 +176,7 @@ def logout():
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
+    
     pagename = 'Register'
     if request.method == 'GET':
         return render_template('register.html', pagename = pagename)
@@ -234,8 +206,10 @@ def register():
         flash('Registration Successful! Please login now:')
         return redirect(url_for('login'))
 
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
+    
     if request.method == 'GET':
         if 'name' in session:
             flash('already logged in!!')
@@ -249,6 +223,7 @@ def login():
                 return render_template('login.html')
         else:
             return render_template('login.html')
+
 
     else: #this means POST
         username = request.form['Username']
@@ -272,7 +247,7 @@ def login():
             else:
                 flash('Please check your login details and try again', 'error')
                 return render_template('login.html') 
-
+    
 
 # ROUTING FOR NAVBAR
 
@@ -296,7 +271,7 @@ def add():
         add_notes(note_details)
         return render_template('add_success.html')
 
-"""
+
 def query_notes():
     query_notes = Notes.query.all()
     return query_notes
@@ -305,8 +280,9 @@ def add_notes(note_details):
     note = Notes(id = note_details[0], title = note_details[1], content = note_details[2], person_id = note_details[3])
     db.session.add(note)
     db.session.commit()
-"""
-    
+
+
+
 def add_users(reg_details):
     account = Account(username = reg_details[0], email = reg_details[1], password = reg_details[2], type = reg_details[3])
     db.session.add(account)
