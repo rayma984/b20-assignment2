@@ -17,7 +17,7 @@ instructors = set()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 2)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 #engine = create_engine('sqlite:///ass3.db')
