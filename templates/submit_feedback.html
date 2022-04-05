@@ -7,7 +7,7 @@
   
     <br>
 
-    <form action="http://127.0.0.1:5000/submit_feedback" method = "post" id="anon_feedback">
+    <form action="http://127.0.0.1:5000/submit_feedback" id="anon_feedback" method = "post" >
         <label for="Q1">What do you like about the instructor teaching?</label>
         <textarea name="Q1" form="anon_feedback" rows="5" cols="40"></textarea>
 
@@ -23,7 +23,7 @@
         <!--drop down with all the profs-->
         <select name="instructor" id="instructor">
             {% for prof in profs %}
-                <option value= {{ prof.username }}>{{ prof.username }}</option>
+                <option value= {{ prof.Instructor_id }}>{{ prof.username }}</option>
             {% endfor %}
         </select>
 

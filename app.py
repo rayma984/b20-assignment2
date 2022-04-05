@@ -71,11 +71,6 @@ class Remark(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = False)
 
-#getting list of profs
-def get_all_profs():
-    profs = Instructor.query.all()
-    return profs
-
 
 """
 #Filtering in SQLAlchemy
@@ -160,6 +155,7 @@ def submit_feedback():
         q4 = request.form['Q4']
         instructor = request.form['instructor']
         feedback = (q1,q2,q3,q4,instructor)
+        add_feedback(feedback)
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
 @app.route('/instr_home')
@@ -286,6 +282,10 @@ def add_users_instructor(reg_details, acc_num):
     db.session.add(account)
     db.session.commit()
 
+#getting list of profs
+def get_all_profs():
+    profs = Instructor.query.all()
+    return profs
 
 if __name__ == '__main__':
     app.run(debug=True)
