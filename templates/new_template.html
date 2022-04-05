@@ -22,13 +22,14 @@
                     <a href="{{ url_for('stu_home') }}">Home Page</a> 
                     <a href="{{ url_for('submit_feedback') }}">Submit Feedback</a>
 
-                    {% else %}
+                    {% else %}  <!--for when user is logged in as instructor-->
                     <a href="{{ url_for('instr_home') }}">Home Page</a> 
                     <a href="{{ url_for('view_feedback') }}">View Feedback</a>
-                    <a href="{{ url_for('view_remark') }}">View Remark Requests</a>                
+                    <a href="{{ url_for('view_remark') }}">View Remark Requests</a>
+                    <a href="{{ url_for('enter_marks') }}">Enter Marks</a>             
                     {% endif %}
 
-                    <!--these are the A2 pages-->
+                    <!--these are the A2 pages (common to both users)-->
                     <a href="{{ url_for('index') }}">Course Home</a>
                     <a href="{{ url_for('course_team') }}">Course Team</a>
                     <a href="{{ url_for('lectures') }}">Lectures</a>
@@ -41,8 +42,7 @@
 
                     <!--logout page-->
                     <a href="{{ url_for('logout') }}">Logout</a>
-                    
-                    
+                                   
                 </strong>
             </div>
     
