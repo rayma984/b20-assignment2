@@ -1,0 +1,6 @@
+{% extends "template.html" %}
+{% block content %}
+    
+    <p id="intro">Welcome to the enter marks page!</p>
+
+{% endblock %}

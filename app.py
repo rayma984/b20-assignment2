@@ -37,12 +37,7 @@ class Person(base):
     #def __repr__(self):
         #return f"Person('{self.username}', '{self.email}')"
 
-<<<<<<< Updated upstream
-#delete this shit before handing in lol
-class Notes(db.Model):
-=======
 class Notes(base):
->>>>>>> Stashed changes
     __tablename__ = 'Notes'
     id = db.Column(db.Integer, primary_key = True, unique = True)
     title= db.Column(db.String(20), nullable = False)
