@@ -194,14 +194,19 @@ def register():
             hashed_password,
             types
         )
-        if ((types == 'Student') == True):
-            students.add(username)
-            add_users_student(reg_details)
-        else:
-            instructors.add(username)
-            add_users_instructor(reg_details)
 
         add_users(reg_details)
+
+        account = Account.query.filter_by(username = username).first()
+        acc_num = account.Account_id
+
+        if ((types == 'Student') == True):
+            students.add(username)
+            add_users_student(reg_details, acc_num)
+        else:
+            instructors.add(username)
+            add_users_instructor(reg_details, acc_num)
+        
 
         flash('Registration Successful! Please login now:')
         return redirect(url_for('login'))
@@ -288,13 +293,13 @@ def add_users(reg_details):
     db.session.add(account)
     db.session.commit()
 
-def add_users_student(reg_details):
-    student = Student(username = reg_details[0])
+def add_users_student(reg_details, acc_num):
+    student = Student(username = reg_details[0], Student_id =  acc_num)
     db.session.add(student)
     db.session.commit()
 
-def add_users_instructor(reg_details):
-    account = Instructor(username = reg_details[0])
+def add_users_instructor(reg_details, acc_num):
+    account = Instructor(username = reg_details[0], Instructor_id =  acc_num)
     db.session.add(account)
     db.session.commit()
 
