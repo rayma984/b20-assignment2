@@ -81,23 +81,50 @@ a:active{
 
 .footer {
 	margin-top: 100px;
-	color: darkmagenta;
+	color: saddlebrown;
+	border-style: groove;
+	border-color: saddlebrown;
+	background-color: blanchedalmond;
+
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+
 	justify-content: space-around;
 	gap: 10px, 10px;
 	align-items: center;
+	font-weight: bold;
+	font-family: Times New Roman;
 }
 
 body{
 	background-color:palegoldenrod;
+	background-image: url("../pics/hi1.png");
 }
+
+.divider{
+	border-top: 15px dashed blanchedalmond;
+	margin-top: 10px;
+	border-style: groove;
+}
+
 
 #intro{
 	text-align: center;
-	font-size: large;
-
+	font-family: Courier New;
+	font-weight: bold;
+	font-size: 150%;
+	background-color: saddlebrown;
+	margin: 5px;
+	background-size: cover;
+	width: 100%;
+	color: lightgoldenrodyellow;
+	height: 100%;
+	padding: 20px;
+	height: fit-content;
+	flex-wrap: wrap;
+	border-style: groove;
+	border-color: lightgoldenrodyellow;
 }
 
 /* STUFF FOR FORMS BELOW */
@@ -197,4 +224,10 @@ button:hover{
 	.header {
 		font-size: 160%;
 	}
+
+	.signature
+	{	font-family: sans-serif;
+		font-weight: bold;
+	}
+
 }
