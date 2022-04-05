@@ -153,7 +153,7 @@ def submit_feedback():
 
     if request.method == 'GET':
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
-    else: #posting
+    else: #POST
         q1 = request.form['Q1']
         q2 = request.form['Q2']
         q3 = request.form['Q3']
@@ -265,36 +265,6 @@ def login():
                 return render_template('login.html') 
     
 # ROUTING FOR NAVBAR
-
-@app.route('/notes', methods = ['GET', 'POST'])
-def notes():
-    if request.method == 'GET':
-        query_notes_result = query_notes()
-        return render_template('notes.html', query_notes_result = query_notes_result)
-
-@app.route('/add', methods = ['GET', 'POST'])
-def add():
-    if request.method == 'GET':
-        return render_template('add.html')
-    else:
-        note_details =(
-            request.form['Note_ID'],
-            request.form['Title'],
-            request.form['Content'],
-            request.form['Your_ID']
-        )
-        add_notes(note_details)
-        return render_template('add_success.html')
-
-
-def query_notes():
-    query_notes = Notes.query.all()
-    return query_notes
-
-def add_notes(note_details):
-    note = Notes(id = note_details[0], title = note_details[1], content = note_details[2], person_id = note_details[3])
-    db.session.add(note)
-    db.session.commit()
 
 def add_feedback(input):
     feedback = Feedback(q1 = input[0],q2 = input[1], q3 = input[2], q4 = input[3], instructor_id = input[4])
