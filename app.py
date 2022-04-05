@@ -230,6 +230,8 @@ def login():
                 return redirect(url_for('stu_home'))
             elif ('name' in instructors):
                 return redirect(url_for('instr_home'))
+            else:
+                return render_template('login.html')
         else:
             return render_template('login.html')
     else:
