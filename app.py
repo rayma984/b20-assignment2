@@ -234,7 +234,7 @@ def login():
                 return render_template('login.html')
         else:
             return render_template('login.html')
-    else:
+    else: #this means POST
         username = request.form['Username']
         password = request.form['Password']
         account = Account.query.filter_by(username = username).first()
@@ -248,8 +248,10 @@ def login():
             session.permanent = True
             if (account.type == Student ):
                 return redirect(url_for('stu_home'))
-            else:
+            elif (account.type == Instructor ):
                 return redirect(url_for('instr_home'))
+            else:
+                return render_template(url_for('login'))
 
 # ROUTING FOR NAVBAR
 
