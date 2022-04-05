@@ -245,12 +245,12 @@ def login():
         #if user is recognised
         else:
             session['name'] = username
-            if (account.type == Student ):
+            if (account.type == 'Student' ):
                 session.permanent = True
-                return redirect(url_for('stu_home.html'))
-            elif (account.type == Instructor ):
+                return redirect(url_for('stu_home'))
+            elif (account.type == 'Instructor' ):
                 session.permanent = True
-                return redirect(url_for('instr_home.html'))
+                return redirect(url_for('instr_home'))
             else:
                 flash('Please check your login details and try again', 'error')
                 return render_template('login.html') 
