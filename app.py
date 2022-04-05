@@ -63,7 +63,7 @@ class Feedback(db.Model):
     q3 = db.Column(db.Integer, nullable = False)
     q4 = db.Column(db.Integer, nullable = False)
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
-    feed_id = db.Column(db.Integer, primary_key = True, unique = True, nullable = False)
+    Feed_id = db.Column(db.Integer, primary_key = True, unique = True, nullable = False)
 
 class Remark(db.Model):
     __tablename__ = 'Remark'
@@ -267,7 +267,7 @@ def login():
 # ROUTING FOR NAVBAR
 
 def add_feedback(input):
-    feedback = Feedback(q1 = input[0],q2 = input[1], q3 = input[2], q4 = input[3], instructor_id = input[4])
+    feedback = Feedback(q1 = input[0], q2 = input[1], q3 = input[2], q4 = input[3], instructor_id = input[4])
     db.session.add(feedback)
     db.session.commit()
 
