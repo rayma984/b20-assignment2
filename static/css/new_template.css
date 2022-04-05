@@ -137,7 +137,7 @@ form{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	font-size: 20px;
+	font-size: 16px;
 }
 
 input[type=text], select {
@@ -166,6 +166,7 @@ button{
 }
 button:hover{
 	background-color: white;
+	color:tomato;
 	transition-duration: .3s;
 	box-shadow: 0 5px 10px rgb(173, 168, 168);
 }
@@ -175,7 +176,7 @@ button:hover{
 @media all and (max-width: 720px){
 	body{
 		background: rgb(102, 141, 214);
-		color:aquamarine
+		color:navy
 	}
 
 /*below is the header section*/

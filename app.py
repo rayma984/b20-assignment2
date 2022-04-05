@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
 #rom sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
+#from sqlalchemy import create_engine
 
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
@@ -29,7 +29,7 @@ class Account(db.Model):
     Account_id = db.Column(db.Integer, primary_key = True, unique = True)
     username = db.Column(db.String(20), unique=True, nullable = False)
     password = db.Column(db.String(20), nullable = False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False) #does it need unique?
     type = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
@@ -55,6 +55,7 @@ class Marks(db.Model):
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
     accessment = db.Column(db.String(20), nullable = False, primary_key = True)
     grade = db.Column(db.Integer, nullable = False)
+    #spelling error on accessment -> assessment ??fixable?? unknown
 
 class Feedback(db.Model):
     __tablename__ = 'Feedback'
@@ -70,11 +71,6 @@ class Remark(db.Model):
     accessment = db.Column(db.String(20),db.ForeignKey('Marks.accessment'), nullable = False, primary_key = True)
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = False)
-
-#getting list of profs
-def get_all_profs():
-    profs = Instructor.query.all()
-    return profs
 
 
 """
@@ -160,6 +156,7 @@ def submit_feedback():
         q4 = request.form['Q4']
         instructor = request.form['instructor']
         feedback = (q1,q2,q3,q4,instructor)
+        add_feedback(feedback)
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
 @app.route('/instr_home')
@@ -167,20 +164,48 @@ def instr_home():
     pagename = 'Home Page'
     return render_template('instr_home.html', pagename = pagename)    
 
-@app.route('/view_feedback')
+@app.route('/view_feedback', methods = ['GET', 'POST'])
 def view_feedback():
     pagename = 'View Feedback'
-    return render_template('view_feedback.html', pagename = pagename)
+    if request.method == 'GET':
+        prof_name = session['name']
+        id = get_id_from_name(prof_name)
+        query_feedbacks = get_feedback(id)
+        return render_template('view_feedback.html', pagename = pagename, query_feedbacks=query_feedbacks)
 
 @app.route('/view_remark')
 def view_remark():
     pagename = 'Remarks'
     return render_template('view_remark.html', pagename = pagename) 
 
-@app.route('/enter_marks')
+@app.route('/enter_marks', methods = ['GET', 'POST'])
 def enter_marks():
     pagename = 'Enter Marks'
-    return render_template('enter_marks.html', pagename = pagename) 
+    if request.method == 'GET':
+        return render_template('enter_marks.html', pagename = pagename)
+    else: #POST
+        student = request.form['student']
+        assessment = request.form['assessment']
+        grade = request.form['grade']
+
+        stu_id = get_id_from_name(student)
+        instr_id = get_id_from_name(session['name'])
+
+        #check if the combo of stu_id+asessment exists (remark)
+        student_marks = query_student_marks(stu_id)
+
+        for mark in student_marks:
+            if(mark.accessment == assessment): #db spelling error see Mark class
+                #give the user a flash message for remark processed
+                mark.grade = grade #this updates the info
+                db.session.commit()
+                return render_template('enter_marks.html', pagename = pagename)
+                break 
+        
+        input = (stu_id,instr_id,assessment,grade)
+        add_mark(input)
+        #add a flash message for mark added
+        return render_template('enter_marks.html', pagename = pagename) 
 
 @app.route('/logout')
 def logout():
@@ -196,8 +221,6 @@ def register():
     else:
         username = request.form['Username']
         email = request.form['Email']
-        
-        #add registered users to the correct set
 
         hashed_password = bcrypt.generate_password_hash(request.form['Password']).decode('utf-8')
         types= request.form['Acc_Type'] 
@@ -229,7 +252,7 @@ def register():
 def login():
     if request.method == 'GET':
         if 'name' in session:
-            flash('already logged in!!')
+            flash('already logged in!!') #this doesnt work lol
 
             #which page should be shown?
             if ('name' in students):
@@ -286,6 +309,32 @@ def add_users_instructor(reg_details, acc_num):
     db.session.add(account)
     db.session.commit()
 
+#add a mark to the Mark table
+def add_mark(details):
+    mark = Marks(student_id = details[0], instructor_id =  details[1],
+    accessment = details[2], grade =  details[3]) #db spelling error see Mark class
+    db.session.add(mark)
+    db.session.commit()
+
+#getting list of profs from Instructor table
+def get_all_profs():
+    profs = Instructor.query.all()
+    return profs
+
+#get the account_id belonging to the given name
+def get_id_from_name(name):
+    account = Account.query.filter_by(username = name).first()
+    id = account.Account_id
+    return id
+
+#get the feedback tuples of a given id
+def get_feedback(instructor_id):
+    feedbacks = Feedback.query.filter_by(instructor_id = instructor_id)
+    return feedbacks
+
+def query_student_marks(stu_id):
+    marks = Marks.query.filter_by(student_id = stu_id)
+    return marks
 
 if __name__ == '__main__':
     app.run(debug=True)
