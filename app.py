@@ -17,7 +17,7 @@ instructors = set()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 2)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 #engine = create_engine('sqlite:///ass3.db')
@@ -37,12 +37,7 @@ class Person(base):
     #def __repr__(self):
         #return f"Person('{self.username}', '{self.email}')"
 
-<<<<<<< Updated upstream
-#delete this shit before handing in lol
-class Notes(db.Model):
-=======
 class Notes(base):
->>>>>>> Stashed changes
     __tablename__ = 'Notes'
     id = db.Column(db.Integer, primary_key = True, unique = True)
     title= db.Column(db.String(20), nullable = False)
@@ -141,9 +136,6 @@ for r in result:
 """
 # ROUTING FOR NAVBAR
 
-
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -169,6 +161,36 @@ def assignments():
 def labs():
     return render_template('labs.html')
 
+#new pages for A3
+@app.route('/stu_home')
+def stu_home():
+    return render_template('stu_home.html')
+
+@app.route('/submit_feedback')
+def submit_feedback():
+    return render_template('submit_feedback.html')
+
+@app.route('/instr_home')
+def instr_home():
+    return render_template('instr_home.html')    
+
+@app.route('/view_feedback')
+def view_feedback():
+    return render_template('view_feedback.html')
+
+@app.route('/view_remark')
+def view_remark():
+    return render_template('view_remark.html') 
+
+@app.route('/enter_marks')
+def enter_marks():
+    return render_template('enter_marks.html') 
+
+@app.route('/logout')
+def logout():
+    session.pop('name', default = None)
+    return redirect(url_for('index'))
+
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     pagename = 'Register'
@@ -190,10 +212,8 @@ def register():
         )
         if ((types == 'Student') == True):
             students.add(username)
- 
         else:
             instructors.add(username)
-
         
         add_users(reg_details)
         flash('Registration Successful! Please login now:')
@@ -204,21 +224,46 @@ def login():
     if request.method == 'GET':
         if 'name' in session:
             flash('already logged in!!')
-            return redirect(url_for('home'))
+
+            #which page should be shown?
+            if ('name' in students):
+                return redirect(url_for('stu_home'))
+            elif ('name' in instructors):
+                return redirect(url_for('instr_home'))
+            else:
+                return render_template('login.html')
         else:
             return render_template('login.html')
 
-    else:
+
+
+
+    else: #this means POST
         username = request.form['Username']
         password = request.form['Password']
         account = Account.query.filter_by(username = username).first()
-        if not account or not bcrypt.check_password_hash(account.password, password): 
+        #if user fails authentication
+        if not account or not bcrypt.check_password_hash(account.password, password):
+
             flash('Please check your login details and try again', 'error')
             return render_template('login.html')
+        #if user is recognised
         else:
             session['name'] = username
+
             session.permanent = True
             return redirect(url_for('index'))
+
+            if (account.type == 'Student' ):
+                session.permanent = True
+                return redirect(url_for('stu_home'))
+            elif (account.type == 'Instructor' ):
+                session.permanent = True
+                return redirect(url_for('instr_home'))
+            else:
+                flash('Please check your login details and try again', 'error')
+                return render_template('login.html') 
+
 
 # ROUTING FOR NAVBAR
 
@@ -241,11 +286,6 @@ def add():
         )
         add_notes(note_details)
         return render_template('add_success.html')
-
-@app.route('/logout')
-def logout():
-    session.pop('name', default = None)
-    return redirect(url_for('home'))
 
 """
 def query_notes():
