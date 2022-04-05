@@ -18,7 +18,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 2)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 #engine = create_engine('sqlite:///ass3.db')
 db = SQLAlchemy(app)
@@ -164,27 +163,33 @@ def labs():
 #new pages for A3
 @app.route('/stu_home')
 def stu_home():
-    return render_template('stu_home.html')
+    pagename = 'Home Page'
+    return render_template('stu_home.html', pagename = pagename)
 
 @app.route('/submit_feedback')
 def submit_feedback():
-    return render_template('submit_feedback.html')
+    pagename = 'Anonymous Feedback'
+    return render_template('submit_feedback.html', pagename = pagename)
 
 @app.route('/instr_home')
 def instr_home():
-    return render_template('instr_home.html')    
+    pagename = 'Home Page'
+    return render_template('instr_home.html', pagename = pagename)    
 
 @app.route('/view_feedback')
 def view_feedback():
-    return render_template('view_feedback.html')
+    pagename = 'View Feedback'
+    return render_template('view_feedback.html', pagename = pagename)
 
 @app.route('/view_remark')
 def view_remark():
-    return render_template('view_remark.html') 
+    pagename = 'Remarks'
+    return render_template('view_remark.html', pagename = pagename) 
 
 @app.route('/enter_marks')
 def enter_marks():
-    return render_template('enter_marks.html') 
+    pagename = 'Enter Marks'
+    return render_template('enter_marks.html', pagename = pagename) 
 
 @app.route('/logout')
 def logout():
@@ -234,9 +239,6 @@ def login():
                 return render_template('login.html')
         else:
             return render_template('login.html')
-
-
-
 
     else: #this means POST
         username = request.form['Username']
