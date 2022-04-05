@@ -245,13 +245,15 @@ def login():
         #if user is recognised
         else:
             session['name'] = username
-            session.permanent = True
             if (account.type == Student ):
-                return redirect(url_for('stu_home'))
+                session.permanent = True
+                return redirect(url_for('stu_home.html'))
             elif (account.type == Instructor ):
-                return redirect(url_for('instr_home'))
+                session.permanent = True
+                return redirect(url_for('instr_home.html'))
             else:
-                return render_template(url_for('login'))
+                flash('Please check your login details and try again', 'error')
+                return render_template('login.html') 
 
 # ROUTING FOR NAVBAR
 
