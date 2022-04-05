@@ -42,9 +42,6 @@ class Student(db.Model):
     def __repr__(self):
         return f"Student('{self.username}, {self.Student_id}"
 
-
-    
-
 class Instructor(db.Model):
     __tablename__ = 'Instructor'
     username = db.Column(db.String(20), unique=True, nullable = True) 
@@ -66,13 +63,18 @@ class Feedback(db.Model):
     q3 = db.Column(db.Integer, nullable = False)
     q4 = db.Column(db.Integer, nullable = False)
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
-    Feed_id = db.Column(db.Integer, primary_key = True, unique = True, nullable = False)
+    feed_id = db.Column(db.Integer, primary_key = True, unique = True, nullable = False)
 
 class Remark(db.Model):
     __tablename__ = 'Remark'
     accessment = db.Column(db.String(20),db.ForeignKey('Marks.accessment'), nullable = False, primary_key = True)
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = False)
+
+#getting list of profs
+def get_all_profs():
+    profs = Instructor.query.all()
+    return profs
 
 
 """
@@ -144,10 +146,21 @@ def stu_home():
     pagename = 'Home Page'
     return render_template('stu_home.html', pagename = pagename)
 
-@app.route('/submit_feedback')
+@app.route('/submit_feedback' , methods = ['GET', 'POST'])
 def submit_feedback():
     pagename = 'Anonymous Feedback'
-    return render_template('submit_feedback.html', pagename = pagename)
+    profs = get_all_profs()
+
+    if request.method == 'GET':
+        return render_template('submit_feedback.html', pagename = pagename, profs=profs)
+    else: #posting
+        q1 = request.form['Q1']
+        q2 = request.form['Q2']
+        q3 = request.form['Q3']
+        q4 = request.form['Q4']
+        instructor = request.form['instructor']
+        feedback = (q1,q2,q3,q4,instructor)
+        return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
 @app.route('/instr_home')
 def instr_home():
@@ -214,7 +227,6 @@ def register():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    
     if request.method == 'GET':
         if 'name' in session:
             flash('already logged in!!')
@@ -228,8 +240,6 @@ def login():
                 return render_template('login.html')
         else:
             return render_template('login.html')
-
-
     else: #this means POST
         username = request.form['Username']
         password = request.form['Password']
@@ -254,7 +264,6 @@ def login():
                 flash('Please check your login details and try again', 'error')
                 return render_template('login.html') 
     
-
 # ROUTING FOR NAVBAR
 
 @app.route('/notes', methods = ['GET', 'POST'])
@@ -287,7 +296,10 @@ def add_notes(note_details):
     db.session.add(note)
     db.session.commit()
 
-
+def add_feedback(input):
+    feedback = Feedback(q1 = input[0],q2 = input[1], q3 = input[2], q4 = input[3], instructor_id = input[4])
+    db.session.add(feedback)
+    db.session.commit()
 
 def add_users(reg_details):
     account = Account(username = reg_details[0], email = reg_details[1], password = reg_details[2], type = reg_details[3])
@@ -303,8 +315,6 @@ def add_users_instructor(reg_details, acc_num):
     account = Instructor(username = reg_details[0], Instructor_id =  acc_num)
     db.session.add(account)
     db.session.commit()
-
-
 
 
 if __name__ == '__main__':
