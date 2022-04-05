@@ -186,6 +186,11 @@ def view_remark():
 def enter_marks():
     return render_template('enter_marks.html') 
 
+@app.route('/logout')
+def logout():
+    session.pop('name', default = None)
+    return redirect(url_for('index'))
+
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     pagename = 'Register'
@@ -219,7 +224,12 @@ def login():
     if request.method == 'GET':
         if 'name' in session:
             flash('already logged in!!')
-            return redirect(url_for('home'))
+
+            #which page should be shown?
+            if ('name' in students):
+                return redirect(url_for('stu_home'))
+            else:
+                return redirect(url_for('instr_home'))
         else:
             return render_template('login.html')
     else:
@@ -234,8 +244,10 @@ def login():
         else:
             session['name'] = username
             session.permanent = True
-
-            return redirect(url_for('stu_home'))
+            if (account.type == Student ):
+                return redirect(url_for('stu_home'))
+            else:
+                return redirect(url_for('instr_home'))
 
 # ROUTING FOR NAVBAR
 
@@ -258,11 +270,6 @@ def add():
         )
         add_notes(note_details)
         return render_template('add_success.html')
-
-@app.route('/logout')
-def logout():
-    session.pop('name', default = None)
-    return redirect(url_for('home'))
 
 """
 def query_notes():
