@@ -207,17 +207,18 @@ def login():
             return redirect(url_for('home'))
         else:
             return render_template('login.html')
+
     else:
         username = request.form['Username']
         password = request.form['Password']
         account = Account.query.filter_by(username = username).first()
-        if not account or not bcrypt.check_password_hash(Account.password, password):
+        if not account or not bcrypt.check_password_hash(account.password, password): 
             flash('Please check your login details and try again', 'error')
             return render_template('login.html')
         else:
             session['name'] = username
             session.permanent = True
-            return redirect(url_for('home'))
+            return redirect(url_for('index'))
 
 # ROUTING FOR NAVBAR
 
