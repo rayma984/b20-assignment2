@@ -251,9 +251,6 @@ def login():
         else:
             session['name'] = username
 
-            session.permanent = True
-            return redirect(url_for('index'))
-
             if (account.type == 'Student' ):
                 session.permanent = True
                 return redirect(url_for('stu_home'))
