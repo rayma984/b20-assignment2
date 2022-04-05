@@ -1,11 +1,10 @@
 {% extends "new_template.html" %}
 {% block content %}
-    
+    <link rel="stylesheet" href = "{{url_for('static', filename='css/submit_feedback.css')}}">
     <br>
 
-    <p id="intro">Welcome to the submit feedback page!</p>
-    <p id="intro">Here, you can submit feedback anonymously to an instructor.</p>
-
+    <p id="intro">Welcome to the submit feedback page <br>Here, you can submit feedback anonymously to an instructor.</p>
+  
     <br>
 
     <form action="http://127.0.0.1:5000/submit_feedback" method = "post" id="anon_feedback">
