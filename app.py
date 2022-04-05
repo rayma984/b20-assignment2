@@ -3,7 +3,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
-from sqlalchemy.ext.declarative import declarative_base
+#rom sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
@@ -15,20 +15,12 @@ students = set()
 instructors = set()
 
 app = Flask(__name__)
-<<<<<<< Updated upstream
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 15)
-=======
-
-app.config['SECRET_KEY'] = hush_hush 
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
-
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 #engine = create_engine('sqlite:///ass3.db')
-
->>>>>>> Stashed changes
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
@@ -65,7 +57,7 @@ class Notes(base):
     #def __repr__(self):
         #return f"Notes('{self.title}', '{self.date_posted}')"
 """
->>>>>>> Stashed changes
+
 
 class Account(db.Model):
     __tablename__ = 'Account'
@@ -147,12 +139,10 @@ for r in result:
     print(r['title'])
 
 """
-<<<<<<< Updated upstream
-=======
 # ROUTING FOR NAVBAR
 
 
->>>>>>> Stashed changes
+
 
 @app.route('/')
 @app.route('/index')
@@ -250,7 +240,7 @@ def logout():
     session.pop('name', default = None)
     return redirect(url_for('home'))
 
-
+"""
 def query_notes():
     query_notes = Notes.query.all()
     return query_notes
@@ -259,6 +249,7 @@ def add_notes(note_details):
     note = Notes(id = note_details[0], title = note_details[1], content = note_details[2], person_id = note_details[3])
     db.session.add(note)
     db.session.commit()
+"""
 
 def add_users(reg_details):
     account = Account(username = reg_details[0], email = reg_details[1], password = reg_details[2], type = reg_details[3])
