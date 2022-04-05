@@ -225,7 +225,7 @@ def register():
 def login():
     if request.method == 'GET':
         if 'name' in session:
-            flash('already logged in!!')
+            flash('already logged in!!') #this doesnt work lol
 
             #which page should be shown?
             if ('name' in students):

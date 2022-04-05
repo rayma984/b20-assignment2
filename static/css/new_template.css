@@ -139,6 +139,7 @@ button{
 }
 button:hover{
 	background-color: white;
+	color:tomato;
 	transition-duration: .3s;
 	box-shadow: 0 5px 10px rgb(173, 168, 168);
 }
