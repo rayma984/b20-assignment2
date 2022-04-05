@@ -228,7 +228,7 @@ def login():
             #which page should be shown?
             if ('name' in students):
                 return redirect(url_for('stu_home'))
-            else:
+            elif ('name' in instructors):
                 return redirect(url_for('instr_home'))
         else:
             return render_template('login.html')
