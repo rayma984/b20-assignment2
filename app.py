@@ -163,10 +163,14 @@ def instr_home():
     pagename = 'Home Page'
     return render_template('instr_home.html', pagename = pagename)    
 
-@app.route('/view_feedback')
+@app.route('/view_feedback', methods = ['GET', 'POST'])
 def view_feedback():
     pagename = 'View Feedback'
-    return render_template('view_feedback.html', pagename = pagename)
+    if request.method == 'GET':
+        prof_name = session['name']
+        id = get_id_from_name(prof_name)
+        query_feedbacks = get_feedback(id)
+        return render_template('view_feedback.html', pagename = pagename, query_feedbacks=query_feedbacks)
 
 @app.route('/view_remark')
 def view_remark():
@@ -282,10 +286,21 @@ def add_users_instructor(reg_details, acc_num):
     db.session.add(account)
     db.session.commit()
 
-#getting list of profs
+#getting list of profs from Instructor table
 def get_all_profs():
     profs = Instructor.query.all()
     return profs
+
+#get the account_id belonging to the given name
+def get_id_from_name(name):
+    account = Account.query.filter_by(username = name).first()
+    id = account.Account_id
+    return id
+
+#get the feedback tuples of a given id
+def get_feedback(instructor_id):
+    feedbacks = Feedback.query.filter_by(instructor_id = instructor_id)
+    return feedbacks
 
 if __name__ == '__main__':
     app.run(debug=True)
