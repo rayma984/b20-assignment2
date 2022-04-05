@@ -22,20 +22,19 @@ title{
 }
 form{
 margin: 0 auto;
-  width: 700px;
   /* Form outline */
+  width: fit-content;
   padding: 1em;
   border: 1px solid #CCC;
   /*border-radius: 1em;*/  
-  background-color: lightslategray;
-  background-image: url("../pics/n.gif");
+  background-color: gold;
 }
 
 label {
   /* Uniform size & alignment */
   display: inline-block;
-  width: max-width;
-  font-size: 160%;
+  width: fit-content;
+  font-size: 120%;
   font-family:Courier New;
   text-align: center;
   background-color: lightsalmon;
