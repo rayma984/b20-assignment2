@@ -159,6 +159,16 @@ def submit_feedback():
         add_feedback(feedback)
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
+@app.route('/view_marks', methods = ['GET', 'POST'])
+def view_marks():
+    pagename = 'View Marks'
+    if request.method == 'GET':
+        student = session['name']
+        id = get_id_from_name(student)
+        query_marks = query_student_marks(id)
+        return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
+
+
 @app.route('/instr_home')
 def instr_home():
     pagename = 'Home Page'
@@ -176,7 +186,7 @@ def view_feedback():
 @app.route('/view_remark')
 def view_remark():
     pagename = 'Remarks'
-    return render_template('view_remark.html', pagename = pagename) 
+    return render_template('view_remark.html', pagename = pagename)
 
 @app.route('/enter_marks', methods = ['GET', 'POST'])
 def enter_marks():
