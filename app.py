@@ -183,6 +183,12 @@ def register():
             hashed_password,
             types
         )
+        if ((types == 'Student') == True):
+            students.add(username)
+ 
+        else:
+            instructors.add(username)
+
         
         add_users(reg_details)
         flash('Registration Successful! Please login now:')
@@ -251,5 +257,11 @@ def add_users(reg_details):
     db.session.add(account)
     db.session.commit()
 
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
