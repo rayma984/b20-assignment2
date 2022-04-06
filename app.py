@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from itertools import product
 from flask import Flask, render_template, url_for, flash, redirect, request, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -6,6 +7,16 @@ from sqlalchemy import text # textual queries
 #rom sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 #from sqlalchemy import create_engine
+
+# ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+#     You are currently viewing an unfinished product
+#     PLEASE review TODOs in app.py functions
+#     AND review table schema changes in comments before
+#     removing this VERY IMPORTANT MESSAGE
+
+# ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
