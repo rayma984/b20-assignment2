@@ -253,6 +253,8 @@ def enter_marks():
         add_mark(input)
         #add a flash message for mark added
         return render_template('enter_marks.html', pagename = pagename) 
+#TODO: add error checking (if that student exists) or (invalid mark)
+
 
 @app.route('/logout')
 def logout():
