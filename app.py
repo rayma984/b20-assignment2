@@ -320,6 +320,7 @@ def login():
             return render_template('login.html')
         #if user is recognised
         else:
+            session.pop('name', default = None) #reset session
             session['name'] = username
             session['type'] = account.type
             
