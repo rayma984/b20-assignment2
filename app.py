@@ -124,13 +124,6 @@ r4 = db.session.query(Person).filter(Person.username.like('P%'), Person.id.in_([
 for person in r4:
     print(person.username)
 
-#raw Query
-print('*******Raw Query Execution*******')
-sql = text('select * from Notes')
-result = db.engine.execute(sql)
-for r in result:
-    print(r['title'])
-
 """
 # ROUTING FOR NAVBAR
 
@@ -200,7 +193,8 @@ def view_marks():
         add_remark(remark_req)
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 #TODO fix issue of assessments past the first not being accepted
-#TODO check if there already exists a remark req in the db, if so, flash a rejection message
+#TODO check if there already exists a remark req in the db (same student same assessment), 
+#           if so, flash a rejection message (only one remark per assessment)
 
 @app.route('/instr_home')
 def instr_home():
@@ -227,6 +221,8 @@ def view_feedback():
         id = get_id_from_name(prof_name)
         query_feedbacks = get_feedback(id)
         return render_template('view_feedback.html', pagename = pagename, query_feedbacks=query_feedbacks)
+#TODO the css file needs to center the table created by jinja code
+
 
 @app.route('/view_remark', methods = ['GET', 'POST'])
 def view_remark():
@@ -238,6 +234,8 @@ def view_remark():
             remark = RemarkRequest(requests)
             remarks.add(remark)
         return render_template('view_remark.html', pagename = pagename, remarks=remarks)
+#TODO center the table created by jinja in css file 
+
 
 @app.route('/enter_marks', methods = ['GET', 'POST'])
 def enter_marks():
@@ -249,6 +247,18 @@ def enter_marks():
         assessment = request.form['assessment']
         grade = request.form['grade']
 
+        #check if the student is real
+        flag = False
+        students = get_all_stus()
+        for stu in students:
+            if stu.username == student:
+                flag = True #means the student exists
+                break
+
+        if(flag == False):
+            flash("Student does not exist!", "error")
+            return render_template('enter_marks.html', pagename = pagename) #happens when invalid student name
+
         stu_id = get_id_from_name(student)
         instr_id = get_id_from_name(session['name'])
 
@@ -257,26 +267,19 @@ def enter_marks():
 
         for mark in student_marks:
             if(mark.accessment == assessment): #db spelling error see Mark class
-                #give the user a flash message for remark processed
+                
                 mark.grade = grade #this updates the info
                 db.session.commit()
-                flash("Assessment remarked!")
+                flash("Assessment remarked!", "success")
                 return render_template('enter_marks.html', pagename = pagename)
                 break 
         
         input = (stu_id,instr_id,assessment,grade)
-        if (grade >100 and grade < 0):
-            flash("invalid mark!")
-            return render_template('enter_marks.html', pagename = pagename) 
-        
 
         add_mark(input)
         #add a flash message for mark added
         flash("mark added!")
-        return render_template('enter_marks.html', pagename = pagename) 
-#TODO: add error checking (if that student exists) or (invalid mark)
-        
-#TODO: more details are given in the actual py function, please read it thru
+        return render_template('enter_marks.html', pagename = pagename)
 
 @app.route('/logout')
 def logout():
@@ -408,6 +411,11 @@ def add_remark(details):
 def get_all_profs():
     profs = Instructor.query.all()
     return profs
+
+#getting list of students  from Student table
+def get_all_stus():
+    stu = Student.query.all()
+    return stu
 
 #getting all the marks in the database
 def get_all_marks():
