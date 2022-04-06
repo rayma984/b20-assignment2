@@ -15,6 +15,8 @@
             <!--Intuition: a navigation bar is an unordered list of links, figure out horizontal stuff in CSS-->
             <div class="navigation_bar">           
                 <strong>
+                    {% if session.name %} <!--for when user is logged in-->
+                    <!--will have to put another <IF> for user TYPE-->
                     <a href="{{ url_for('login') }}">Login</a>
                     <a href="{{ url_for('register') }}">Register</a>
                     <a href="{{ url_for('index') }}">Home</a>
@@ -26,6 +28,11 @@
                     <a href="https://piazza.com/class/kxj5alixpjg4ft">Piazza</a>
                     <a href="{{ url_for('assignments') }}">Assignments</a>
                     <a href="{{ url_for('labs') }}">Labs</a>
+                    {% else %}
+                    <a href="{{ url_for('index') }}">Home</a> 
+                    <a href="{{ url_for('register') }}">Register</a>                                     
+                    <a href="{{ url_for('login') }}">Login</a>                    
+                    {% endif %}
                 </strong>
             </div>
 
