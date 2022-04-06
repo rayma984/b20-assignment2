@@ -75,8 +75,15 @@ class Remark(db.Model):
 class RemarkRequest():
     def __init__(self, input):
         self.assessment = input.accessment #spelling
-        self.student = input.student_id
+        self.student = get_name_from_id(input.student_id)
         self.blurb = input.blurb
+
+class Mark():
+    def __init__(self, input):
+        self.student = get_name_from_id(input.student_id)
+        self.instructor = get_name_from_id(input.instructor_id)
+        self.assessment = input.accessment #spelling
+        self.grade = input.grade
 
 """
 #Filtering in SQLAlchemy
@@ -184,6 +191,18 @@ def view_marks():
 def instr_home():
     pagename = 'Home Page'
     return render_template('instr_home.html', pagename = pagename)    
+
+@app.route('/instr_marks', methods = ['GET', 'POST'])
+def instr_marks():
+    pagename = 'View Student Marks'
+    if request.method == 'GET':
+        query_marks = get_all_marks()
+        marks = set()
+        for mark in query_marks:
+            temp = Mark(mark)
+            marks.add(temp)
+        return render_template('instr_marks.html', pagename = pagename, marks=marks)
+
 
 @app.route('/view_feedback', methods = ['GET', 'POST'])
 def view_feedback():
@@ -353,6 +372,11 @@ def add_remark(details):
 def get_all_profs():
     profs = Instructor.query.all()
     return profs
+
+#getting all the marks in the database
+def get_all_marks():
+    marks = Marks.query.all()
+    return marks
 
 #get the account_id belonging to the given name
 def get_id_from_name(name):
