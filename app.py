@@ -17,7 +17,7 @@ instructors = set()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 2)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 8) #change as fit
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 #engine = create_engine('sqlite:///ass3.db')
 db = SQLAlchemy(app)
@@ -29,7 +29,7 @@ class Account(db.Model):
     Account_id = db.Column(db.Integer, primary_key = True, unique = True)
     username = db.Column(db.String(20), unique=True, nullable = False)
     password = db.Column(db.String(20), nullable = False)
-    email = db.Column(db.String(100), unique=True, nullable=False) #does it need unique?
+    email = db.Column(db.String(100), unique=True, nullable=False) #doesnt need unique
     type = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
@@ -55,7 +55,7 @@ class Marks(db.Model):
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
     accessment = db.Column(db.String(20), nullable = False, primary_key = True)
     grade = db.Column(db.Integer, nullable = False)
-    #spelling error on accessment -> assessment ??fixable?? unknown
+    #spelling error: accessment -> assessment 
 
 class Feedback(db.Model):
     __tablename__ = 'Feedback'
@@ -162,10 +162,16 @@ def submit_feedback():
 @app.route('/view_marks', methods = ['GET', 'POST'])
 def view_marks():
     pagename = 'View Marks'
+    student = session['name']
+    id = get_id_from_name(student)
+    query_marks = query_student_marks(id)
     if request.method == 'GET':
-        student = session['name']
-        id = get_id_from_name(student)
-        query_marks = query_student_marks(id)
+        return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
+    else: #POST
+        assessment = request.form['assessment']
+        reason = request.form[assessment]
+        remark_req = (assessment, id, reason)
+        add_remark(remark_req)
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 
 
@@ -324,6 +330,13 @@ def add_mark(details):
     mark = Marks(student_id = details[0], instructor_id =  details[1],
     accessment = details[2], grade =  details[3]) #db spelling error see Mark class
     db.session.add(mark)
+    db.session.commit()
+
+#add a remark to the Remark table
+def add_remark(details):
+    remark = Remark(accessment = details[0], student_id =  details[1],
+    blurb = details[2]) #db spelling error see Remark class
+    db.session.add(remark)
     db.session.commit()
 
 #getting list of profs from Instructor table

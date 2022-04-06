@@ -230,5 +230,10 @@ button:hover{
 	{	font-family: sans-serif;
 		font-weight: bold;
 	}
+}
 
+/* things i dont want to have show up in the html */
+.py_only{
+	display: none;
+	visibility: hidden;
 }
