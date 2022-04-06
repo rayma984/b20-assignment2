@@ -102,6 +102,13 @@ body{
 	background-image: url("../pics/hi1.png");
 }
 
+p {
+	background-color: saddlebrown;
+	border-style: groove;
+	color: lightgoldenrodyellow;
+}
+
+
 .divider{
 	border-top: 15px dashed blanchedalmond;
 	margin-top: 10px;
