@@ -148,7 +148,7 @@ def assignments():
 def labs():
     return render_template('labs.html')
 
-#new pages for A3
+#new pages for A3 ---------------------------------------------
 @app.route('/stu_home')
 def stu_home():
     pagename = 'Home Page'
@@ -170,6 +170,8 @@ def submit_feedback():
         feedback = (q1,q2,q3,q4,instructor)
         add_feedback(feedback)
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
+#TODO: add flash message saying that feedback was submitted (and receive it in the html file)
+
 
 @app.route('/view_marks', methods = ['GET', 'POST'])
 def view_marks():
@@ -254,7 +256,7 @@ def enter_marks():
         #add a flash message for mark added
         return render_template('enter_marks.html', pagename = pagename) 
 #TODO: add error checking (if that student exists) or (invalid mark)
-
+#TODO: more details are given in the actual py function, please read it thru
 
 @app.route('/logout')
 def logout():
@@ -292,9 +294,11 @@ def register():
             instructors.add(username)
             add_users_instructor(reg_details, acc_num)
         
-
         flash('Registration Successful! Please login now:')
         return redirect(url_for('login'))
+#TODO: add error checking so the site doesnt crash when a duplicate user already exists
+#TODO also add a flash message in ^these cases: 'username taken'
+
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
