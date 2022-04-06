@@ -292,7 +292,7 @@ def register():
     pagename = 'Register'
     if request.method == 'GET':
         return render_template('register.html', pagename = pagename)
-    else:
+    else: #POST aka checking db to see if credentials are correct
         username = request.form['Username']
         email = request.form['Email']
 
@@ -305,17 +305,16 @@ def register():
             types
         )
 
-        
         account = Account.query.filter_by(username = username).first()
         
         #if account with this name appeared in db --> username is already taken
         if account:
-            flash("Username has already be taken!")
+            flash("Username has already be taken!", "error") #ASSUMES WE CAN REBOOT DB (if not include email here)
             return redirect(url_for('register'))
-
-
+        #otherwise, successful registration
         else:
             add_users(reg_details)
+            #add the info to the related tables
             account1 = Account.query.filter_by(username = username).first()
             acc_num = account1.Account_id
             if ((types == 'Student') == True):
@@ -325,10 +324,9 @@ def register():
                 instructors.add(username)
                 add_users_instructor(reg_details, acc_num)
         
-            flash('Registration Successful! Please login now:')
+            flash('Registration Successful! Please login now:', "success")
             return redirect(url_for('login'))
-
-
+#TODO add error checking when no inputs are entered for each inut field
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
