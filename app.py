@@ -180,7 +180,7 @@ def submit_feedback():
         instructor = request.form['instructor']
         feedback = (q1,q2,q3,q4,instructor)
         add_feedback(feedback)
-        flash("feedback submitted!")
+        flash("feedback submitted!", "success")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
 
