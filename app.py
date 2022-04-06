@@ -186,6 +186,7 @@ def view_marks():
         add_remark(remark_req)
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 #TODO fix issue of assessments past the first not being accepted
+#TODO check if there already exists a remark req in the db, if so, flash a rejection message
 
 @app.route('/instr_home')
 def instr_home():
