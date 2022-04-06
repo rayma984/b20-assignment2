@@ -6,7 +6,8 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
 #rom sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-#from sqlalchemy import create_engine
+from sqlalchemy.orm.session import close_all_sessions
+
 
 # ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -29,11 +30,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = hush_hush
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 8) #change as fit
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ass3.db'
 #engine = create_engine('sqlite:///ass3.db')
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-
+close_all_sessions
 
 class Account(db.Model):
     __tablename__ = 'Account'
@@ -42,7 +42,7 @@ class Account(db.Model):
     password = db.Column(db.String(20), nullable = False)
     email = db.Column(db.String(100), unique=True, nullable=False) #doesnt need unique
     type = db.Column(db.String(10), nullable=False)
-
+    
     def __repr__(self):
         return f"Account('{self.username}', '{self.email}, {self.password}, {self.type}')"
 
@@ -180,8 +180,9 @@ def submit_feedback():
         instructor = request.form['instructor']
         feedback = (q1,q2,q3,q4,instructor)
         add_feedback(feedback)
+        flash("feedback submitted!")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
-#TODO: add flash message saying that feedback was submitted (and receive it in the html file)
+
 
 
 @app.route('/view_marks', methods = ['GET', 'POST'])
@@ -259,14 +260,22 @@ def enter_marks():
                 #give the user a flash message for remark processed
                 mark.grade = grade #this updates the info
                 db.session.commit()
+                flash("Assessment remarked!")
                 return render_template('enter_marks.html', pagename = pagename)
                 break 
         
         input = (stu_id,instr_id,assessment,grade)
+        if (grade >100 and grade < 0):
+            flash("invalid mark!")
+            return render_template('enter_marks.html', pagename = pagename) 
+        
+
         add_mark(input)
         #add a flash message for mark added
+        flash("mark added!")
         return render_template('enter_marks.html', pagename = pagename) 
 #TODO: add error checking (if that student exists) or (invalid mark)
+        
 #TODO: more details are given in the actual py function, please read it thru
 
 @app.route('/logout')
@@ -293,22 +302,29 @@ def register():
             types
         )
 
-        add_users(reg_details)
-
-        account = Account.query.filter_by(username = username).first()
-        acc_num = account.Account_id
-
-        if ((types == 'Student') == True):
-            students.add(username)
-            add_users_student(reg_details, acc_num)
-        else:
-            instructors.add(username)
-            add_users_instructor(reg_details, acc_num)
         
-        flash('Registration Successful! Please login now:')
-        return redirect(url_for('login'))
-#TODO: add error checking so the site doesnt crash when a duplicate user already exists
-#TODO also add a flash message in ^these cases: 'username taken'
+        account = Account.query.filter_by(username = username).first()
+        
+        #if account with this name appeared in db --> username is already taken
+        if account:
+            flash("Username has already be taken!")
+            return redirect(url_for('register'))
+
+
+        else:
+            add_users(reg_details)
+            account1 = Account.query.filter_by(username = username).first()
+            acc_num = account1.Account_id
+            if ((types == 'Student') == True):
+                students.add(username)
+                add_users_student(reg_details, acc_num)
+            else:
+                instructors.add(username)
+                add_users_instructor(reg_details, acc_num)
+        
+            flash('Registration Successful! Please login now:')
+            return redirect(url_for('login'))
+
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -423,6 +439,11 @@ def get_feedback(instructor_id):
 def query_student_marks(stu_id):
     marks = Marks.query.filter_by(student_id = stu_id)
     return marks
+
+#unable since extra extension not allowed
+#def reboot_db():
+    #db.session.close_all()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
