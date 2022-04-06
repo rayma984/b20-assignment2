@@ -297,14 +297,15 @@ def register():
 def login():
     if request.method == 'GET':
         if 'name' in session:
-            flash('already logged in!!') #this doesnt work lol
+            flash('already logged in!!')
 
             #which page should be shown?
-            if ('name' in students):
+            if (session['type'] == 'Student'):
                 return redirect(url_for('stu_home'))
-            elif ('name' in instructors):
+            elif (session['type'] == 'Instructor'):
                 return redirect(url_for('instr_home'))
             else:
+                flash("but we couldn't retreive account type, please login again")
                 return render_template('login.html')
         else:
             return render_template('login.html')
