@@ -244,3 +244,8 @@ button:hover{
 	display: none;
 	visibility: hidden;
 }
+
+.blurb{
+	text-align: center;
+	font-size: large;
+}
