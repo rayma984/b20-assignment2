@@ -72,6 +72,11 @@ class Remark(db.Model):
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = False)
 
+class RemarkRequest():
+    def __init__(self, input):
+        self.assessment = input.accessment #spelling
+        self.student = input.student_id
+        self.blurb = input.blurb
 
 """
 #Filtering in SQLAlchemy
@@ -173,7 +178,7 @@ def view_marks():
         remark_req = (assessment, id, reason)
         add_remark(remark_req)
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
-
+#TODO fix issue of assessments past the first not being accepted
 
 @app.route('/instr_home')
 def instr_home():
@@ -189,10 +194,16 @@ def view_feedback():
         query_feedbacks = get_feedback(id)
         return render_template('view_feedback.html', pagename = pagename, query_feedbacks=query_feedbacks)
 
-@app.route('/view_remark')
+@app.route('/view_remark', methods = ['GET', 'POST'])
 def view_remark():
     pagename = 'Remarks'
-    return render_template('view_remark.html', pagename = pagename)
+    if request.method == 'GET':
+        query_remarks = get_all_remark()
+        remarks = set()
+        for requests in query_remarks:
+            remark = RemarkRequest(requests)
+            remarks.add(remark)
+        return render_template('view_remark.html', pagename = pagename, remarks=remarks)
 
 @app.route('/enter_marks', methods = ['GET', 'POST'])
 def enter_marks():
@@ -262,7 +273,6 @@ def register():
 
         flash('Registration Successful! Please login now:')
         return redirect(url_for('login'))
-
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -349,6 +359,17 @@ def get_id_from_name(name):
     account = Account.query.filter_by(username = name).first()
     id = account.Account_id
     return id
+
+#get the username belonging to the given id
+def get_name_from_id(id):
+    account = Account.query.filter_by(Account_id = id).first()
+    name = account.username
+    return name
+
+#get the all the remark requests from Remark table
+def get_all_remark():
+    remarks = Remark.query.all()
+    return remarks
 
 #get the feedback tuples of a given id
 def get_feedback(instructor_id):
