@@ -190,8 +190,9 @@ def view_marks():
         assessment = request.form['assessment']
         reason = request.form[assessment]
         
-        remark_req = (assessment, id,reason)
+        remark_req = (assessment, id, reason)
         add_remark(remark_req)
+        #add a flash messag ehere
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 #TODO fix issue of assessments past the first not being accepted
 #TODO check if there already exists a remark req in the db (same student same assessment), 
