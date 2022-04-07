@@ -2,6 +2,7 @@
 {% block content %}
     
 {% if session.name and session.type == 'Student' %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/view_marks.css')}}">
     <p id="intro">Welcome to the student view marks page!</p>
     <p id="intro">Here, you will see all the marks for your assessments</p>
     <!--couldnt figure out how to show teacher name too lol-->
