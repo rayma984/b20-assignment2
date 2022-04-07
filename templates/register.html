@@ -4,10 +4,12 @@
     {% with messages = get_flashed_messages(with_categories = True) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div>{{ category }} - {{ message }}</div>
+                <div class="flashy">{{ category }} - {{ message }}</div>
             {% endfor %}
         {% endif %}
     {% endwith %}
+   
+    <link   rel = "stylesheet" href="{{url_for('static', filename='css/register.css')}}">
     <p id="register_prompt">Please enter your account details to sign up</p>
     <br>
 
