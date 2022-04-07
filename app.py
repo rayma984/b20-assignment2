@@ -4,7 +4,6 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
-#rom sqlalchemy.ext.declarative import declarative_base
 
 # ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -171,8 +170,6 @@ def submit_feedback():
         add_feedback(feedback)
         flash("feedback submitted!", "success")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
-
-
 
 @app.route('/view_marks', methods = ['GET', 'POST'])
 def view_marks():
