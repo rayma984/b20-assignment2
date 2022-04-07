@@ -29,3 +29,11 @@ tr:nth-child(odd){
 	background-color: blanchedalmond;
 	color: saddlebrown;
 }
+
+label {
+	font-family: oblique sans-serif;
+	font-weight: bold;
+	font-size: 140%;
+	color: black;
+
+}
