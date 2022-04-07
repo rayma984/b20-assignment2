@@ -3,10 +3,12 @@
     
     {% if session.name and session.type == 'Instructor' %}
     <!-- likely a bug >
-
+        
         <p id="intro">Welcome to the instructor view marks page!</p>
         <p id="intro">Here, you will see all the marks for your assessments</p>
         <!--couldnt figure out how to show teacher name too lol-->
+        
+        <link rel = "stylesheet" href = "{{url_for('static',filename='css/instr_marks.css')}}">
         <table class="mark_table">
             <tr>
                 <th>Student</th>

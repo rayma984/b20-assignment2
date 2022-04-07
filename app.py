@@ -81,7 +81,7 @@ class Remark(db.Model):
     __tablename__ = 'Remark'
     accessment = db.Column(db.String(20),db.ForeignKey('Marks.accessment'), nullable = False, primary_key = True)
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
-    blurb = db.Column(db.String(100), unique = False, nullable = False)
+    blurb = db.Column(db.String(100), unique = False, nullable = True)
 
 class RemarkRequest():
     def __init__(self, input):
@@ -189,7 +189,8 @@ def view_marks():
     else: #POST
         assessment = request.form['assessment']
         reason = request.form[assessment]
-        remark_req = (assessment, id, reason)
+        
+        remark_req = (assessment, id,reason)
         add_remark(remark_req)
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 #TODO fix issue of assessments past the first not being accepted
