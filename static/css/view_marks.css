@@ -37,3 +37,7 @@ label {
 	color: black;
 
 }
+
+input[type=text]{
+width: 400px; border-style: groove; background-color: whitesmoke;"
+}
