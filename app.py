@@ -5,8 +5,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
 #rom sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.session import close_all_sessions
+
+# ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+#     You are currently viewing an unfinished product
+#     PLEASE review TODOs in app.py functions
+#     AND review table schema changes in comments before
+#     removing this VERY IMPORTANT MESSAGE
+
+# ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
@@ -22,14 +30,13 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 8) #change as fit
 #engine = create_engine('sqlite:///ass3.db')
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-close_all_sessions
 
 class Account(db.Model):
     __tablename__ = 'Account'
     Account_id = db.Column(db.Integer, primary_key = True, unique = True)
     username = db.Column(db.String(20), unique=True, nullable = False)
     password = db.Column(db.String(20), nullable = False)
-    email = db.Column(db.String(100), nullable=False) 
+    email = db.Column(db.String(100), unique=True, nullable=False) #doesnt need unique
     type = db.Column(db.String(10), nullable=False)
     
     def __repr__(self):
@@ -55,6 +62,7 @@ class Marks(db.Model):
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
     assessment = db.Column(db.String(20), nullable = False, primary_key = True)
     grade = db.Column(db.Integer, nullable = False)
+    #spelling error: accessment -> assessment 
 
 class Feedback(db.Model):
     __tablename__ = 'Feedback'
@@ -69,11 +77,11 @@ class Remark(db.Model):
     __tablename__ = 'Remark'
     assessment = db.Column(db.String(20),db.ForeignKey('Marks.assessment'), nullable = False, primary_key = True)
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
-    blurb = db.Column(db.String(100), unique = False, nullable = True , primary_key = True)
+    blurb = db.Column(db.String(100), unique = False, nullable = True)
 
 class RemarkRequest():
     def __init__(self, input):
-        self.assessment = input.assessment
+        self.assessment = input.assessment  #spelling
         self.student = get_name_from_id(input.student_id)
         self.blurb = input.blurb
 
@@ -81,7 +89,7 @@ class Mark():
     def __init__(self, input):
         self.student = get_name_from_id(input.student_id)
         self.instructor = get_name_from_id(input.instructor_id)
-        self.assessment = input.assessment 
+        self.assessment = input.assessment  #spelling
         self.grade = input.grade
 
 """
@@ -164,6 +172,8 @@ def submit_feedback():
         flash("feedback submitted!", "success")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
+
+
 @app.route('/view_marks', methods = ['GET', 'POST'])
 def view_marks():
     pagename = 'View Marks'
@@ -176,9 +186,8 @@ def view_marks():
         assessment = request.form['assessment']
         reason = request.form[assessment]
         
-        remark_req = (assessment, id, reason)
+        remark_req = (assessment, id,reason)
         add_remark(remark_req)
-        #add a flash messag ehere
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 #TODO fix issue of assessments past the first not being accepted
 #TODO check if there already exists a remark req in the db (same student same assessment), 
@@ -254,7 +263,7 @@ def enter_marks():
         student_marks = query_student_marks(stu_id)
 
         for mark in student_marks:
-            if(mark.assessment == assessment): #db spelling error see Mark class
+            if(mark.assessment  == assessment ): #db spelling error see Mark class
                 
                 mark.grade = grade #this updates the info
                 db.session.commit()
@@ -266,7 +275,7 @@ def enter_marks():
 
         add_mark(input)
         #add a flash message for mark added
-        flash("mark added!","success")
+        flash("mark added!")
         return render_template('enter_marks.html', pagename = pagename)
 
 @app.route('/logout')
@@ -382,13 +391,13 @@ def add_users_instructor(reg_details, acc_num):
 #add a mark to the Mark table
 def add_mark(details):
     mark = Marks(student_id = details[0], instructor_id =  details[1],
-    assessment = details[2], grade =  details[3]) #db spelling error see Mark class
+    assessment  = details[2], grade =  details[3]) #db spelling error see Mark class
     db.session.add(mark)
     db.session.commit()
 
 #add a remark to the Remark table
 def add_remark(details):
-    remark = Remark(assessment = details[0], student_id =  details[1],
+    remark = Remark(assessment  = details[0], student_id =  details[1],
     blurb = details[2]) #db spelling error see Remark class
     db.session.add(remark)
     db.session.commit()
@@ -433,11 +442,6 @@ def get_feedback(instructor_id):
 def query_student_marks(stu_id):
     marks = Marks.query.filter_by(student_id = stu_id)
     return marks
-
-#unable since extra extension not allowed
-#def reboot_db():
-    #db.session.close_all()
-
 
 if __name__ == '__main__':
     app.run(debug=True)
