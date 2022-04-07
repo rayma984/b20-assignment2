@@ -4,6 +4,7 @@ from flask import Flask, render_template, url_for, flash, redirect, request, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
+#rom sqlalchemy.ext.declarative import declarative_base
 
 # ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -171,6 +172,8 @@ def submit_feedback():
         flash("feedback submitted!", "success")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
 
+
+
 @app.route('/view_marks', methods = ['GET', 'POST'])
 def view_marks():
     pagename = 'View Marks'
@@ -184,7 +187,11 @@ def view_marks():
         reason = request.form[assessment]
         
         remark_req = (assessment, id,reason)
+        if (Remark.query.filter_by(assessment = assessment, student_id = get_id_from_name(student)).first()):
+            flash("Only 1 remark request per assessment is allowed!")
+            return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
         add_remark(remark_req)
+        flash("remark request for assessment submitted!")
         return render_template('view_marks.html', pagename = pagename, query_marks=query_marks)
 #TODO fix issue of assessments past the first not being accepted
 #TODO check if there already exists a remark req in the db (same student same assessment), 
@@ -290,7 +297,7 @@ def register():
         username = request.form['Username']
         email = request.form['Email']
         if (len(request.form['Password']) == 0):
-            flash("Password cannot be empty!", "error") #ASSUMES WE CAN REBOOT DB (if not include email here)
+            flash("Password cannot be empty!", "error") 
             return redirect(url_for('register'))
     
         hashed_password = bcrypt.generate_password_hash(request.form['Password']).decode('utf-8')
@@ -302,9 +309,7 @@ def register():
             types
         )
 
-        
         account = Account.query.filter_by(username = username).first()
-        
         #if account with this name appeared in db --> username is already taken
         if account:
             flash("Username has already be taken!", "error") #ASSUMES WE CAN REBOOT DB (if not include email here)
