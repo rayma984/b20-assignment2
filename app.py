@@ -5,9 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy import text # textual queries
 #rom sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.session import close_all_sessions
-
 
 # ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -33,7 +30,6 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 8) #change as fit
 #engine = create_engine('sqlite:///ass3.db')
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-close_all_sessions
 
 class Account(db.Model):
     __tablename__ = 'Account'
@@ -64,7 +60,7 @@ class Marks(db.Model):
     __tablename__ = 'Marks'
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
-    accessment = db.Column(db.String(20), nullable = False, primary_key = True)
+    assessment = db.Column(db.String(20), nullable = False, primary_key = True)
     grade = db.Column(db.Integer, nullable = False)
     #spelling error: accessment -> assessment 
 
@@ -79,13 +75,13 @@ class Feedback(db.Model):
 
 class Remark(db.Model):
     __tablename__ = 'Remark'
-    accessment = db.Column(db.String(20),db.ForeignKey('Marks.accessment'), nullable = False, primary_key = True)
+    assessment = db.Column(db.String(20),db.ForeignKey('Marks.assessment'), nullable = False, primary_key = True)
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     blurb = db.Column(db.String(100), unique = False, nullable = True)
 
 class RemarkRequest():
     def __init__(self, input):
-        self.assessment = input.accessment #spelling
+        self.assessment = input.assessment  #spelling
         self.student = get_name_from_id(input.student_id)
         self.blurb = input.blurb
 
@@ -93,7 +89,7 @@ class Mark():
     def __init__(self, input):
         self.student = get_name_from_id(input.student_id)
         self.instructor = get_name_from_id(input.instructor_id)
-        self.assessment = input.accessment #spelling
+        self.assessment = input.assessment  #spelling
         self.grade = input.grade
 
 """
@@ -267,7 +263,7 @@ def enter_marks():
         student_marks = query_student_marks(stu_id)
 
         for mark in student_marks:
-            if(mark.accessment == assessment): #db spelling error see Mark class
+            if(mark.assessment  == assessment ): #db spelling error see Mark class
                 
                 mark.grade = grade #this updates the info
                 db.session.commit()
@@ -395,13 +391,13 @@ def add_users_instructor(reg_details, acc_num):
 #add a mark to the Mark table
 def add_mark(details):
     mark = Marks(student_id = details[0], instructor_id =  details[1],
-    accessment = details[2], grade =  details[3]) #db spelling error see Mark class
+    assessment  = details[2], grade =  details[3]) #db spelling error see Mark class
     db.session.add(mark)
     db.session.commit()
 
 #add a remark to the Remark table
 def add_remark(details):
-    remark = Remark(accessment = details[0], student_id =  details[1],
+    remark = Remark(assessment  = details[0], student_id =  details[1],
     blurb = details[2]) #db spelling error see Remark class
     db.session.add(remark)
     db.session.commit()
@@ -446,11 +442,6 @@ def get_feedback(instructor_id):
 def query_student_marks(stu_id):
     marks = Marks.query.filter_by(student_id = stu_id)
     return marks
-
-#unable since extra extension not allowed
-#def reboot_db():
-    #db.session.close_all()
-
 
 if __name__ == '__main__':
     app.run(debug=True)
