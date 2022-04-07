@@ -168,6 +168,9 @@ def submit_feedback():
         q4 = request.form['Q4']
         instructor = request.form['instructor']
         feedback = (q1,q2,q3,q4,instructor)
+        if (len(q1) == 0 or len(q2) == 0 or len(q3) == 0 or len(q4) == 0):
+            flash("content cannot be blank!")
+            return render_template('submit_feedback.html', pagename = pagename, profs=profs)
         add_feedback(feedback)
         flash("feedback submitted!", "success")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
@@ -451,6 +454,3 @@ def query_student_marks(stu_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
