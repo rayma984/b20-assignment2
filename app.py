@@ -8,17 +8,6 @@ from sqlalchemy import text # textual queries
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import close_all_sessions
 
-
-# ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-#     You are currently viewing an unfinished product
-#     PLEASE review TODOs in app.py functions
-#     AND review table schema changes in comments before
-#     removing this VERY IMPORTANT MESSAGE
-
-# ATTENTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 hush_hush = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 #ripped off of flask's site for an example of a good secret key
 
@@ -40,7 +29,7 @@ class Account(db.Model):
     Account_id = db.Column(db.Integer, primary_key = True, unique = True)
     username = db.Column(db.String(20), unique=True, nullable = False)
     password = db.Column(db.String(20), nullable = False)
-    email = db.Column(db.String(100), unique=True, nullable=False) #doesnt need unique
+    email = db.Column(db.String(100), nullable=False) 
     type = db.Column(db.String(10), nullable=False)
     
     def __repr__(self):
@@ -64,9 +53,8 @@ class Marks(db.Model):
     __tablename__ = 'Marks'
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
     instructor_id = db.Column(db.Integer, db.ForeignKey('Instructor.Instructor_id'), nullable = False)
-    accessment = db.Column(db.String(20), nullable = False, primary_key = True)
+    assessment = db.Column(db.String(20), nullable = False, primary_key = True)
     grade = db.Column(db.Integer, nullable = False)
-    #spelling error: accessment -> assessment 
 
 class Feedback(db.Model):
     __tablename__ = 'Feedback'
@@ -79,13 +67,13 @@ class Feedback(db.Model):
 
 class Remark(db.Model):
     __tablename__ = 'Remark'
-    accessment = db.Column(db.String(20),db.ForeignKey('Marks.accessment'), nullable = False, primary_key = True)
+    assessment = db.Column(db.String(20),db.ForeignKey('Marks.assessment'), nullable = False, primary_key = True)
     student_id = db.Column(db.Integer, db.ForeignKey('Student.Student_id'), nullable = False, primary_key = True)
-    blurb = db.Column(db.String(100), unique = False, nullable = True)
+    blurb = db.Column(db.String(100), unique = False, nullable = True , primary_key = True)
 
 class RemarkRequest():
     def __init__(self, input):
-        self.assessment = input.accessment #spelling
+        self.assessment = input.assessment
         self.student = get_name_from_id(input.student_id)
         self.blurb = input.blurb
 
@@ -93,7 +81,7 @@ class Mark():
     def __init__(self, input):
         self.student = get_name_from_id(input.student_id)
         self.instructor = get_name_from_id(input.instructor_id)
-        self.assessment = input.accessment #spelling
+        self.assessment = input.assessment 
         self.grade = input.grade
 
 """
@@ -175,8 +163,6 @@ def submit_feedback():
         add_feedback(feedback)
         flash("feedback submitted!", "success")
         return render_template('submit_feedback.html', pagename = pagename, profs=profs)
-
-
 
 @app.route('/view_marks', methods = ['GET', 'POST'])
 def view_marks():
@@ -268,7 +254,7 @@ def enter_marks():
         student_marks = query_student_marks(stu_id)
 
         for mark in student_marks:
-            if(mark.accessment == assessment): #db spelling error see Mark class
+            if(mark.assessment == assessment): #db spelling error see Mark class
                 
                 mark.grade = grade #this updates the info
                 db.session.commit()
@@ -280,7 +266,7 @@ def enter_marks():
 
         add_mark(input)
         #add a flash message for mark added
-        flash("mark added!")
+        flash("mark added!","success")
         return render_template('enter_marks.html', pagename = pagename)
 
 @app.route('/logout')
@@ -396,13 +382,13 @@ def add_users_instructor(reg_details, acc_num):
 #add a mark to the Mark table
 def add_mark(details):
     mark = Marks(student_id = details[0], instructor_id =  details[1],
-    accessment = details[2], grade =  details[3]) #db spelling error see Mark class
+    assessment = details[2], grade =  details[3]) #db spelling error see Mark class
     db.session.add(mark)
     db.session.commit()
 
 #add a remark to the Remark table
 def add_remark(details):
-    remark = Remark(accessment = details[0], student_id =  details[1],
+    remark = Remark(assessment = details[0], student_id =  details[1],
     blurb = details[2]) #db spelling error see Remark class
     db.session.add(remark)
     db.session.commit()
