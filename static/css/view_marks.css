@@ -1,0 +1,43 @@
+
+
+
+table  ,th{
+	border: 1px groove;
+	align-content: center;
+	padding: 12px;
+	align-self: center;
+	color: lightgoldenrodyellow;
+	column-rule-style: groove;
+	text-align: left;
+	background-color: saddlebrown;
+	border-color: lightgoldenrodyellow;
+	border-width: 2px;
+	margin-left: 700px;
+}
+td{
+	align-content: space-between;
+	padding: 12px;
+	margin-left: 150px;
+}
+
+tr:nth-child(even){
+	background-color: lightgoldenrodyellow;
+	color: saddlebrown;
+}
+
+tr:nth-child(odd){
+	background-color: blanchedalmond;
+	color: saddlebrown;
+}
+
+label {
+	font-family: oblique sans-serif;
+	font-weight: bold;
+	font-size: 140%;
+	color: black;
+
+}
+
+input[type=text]{
+width: 400px; border-style: groove; background-color: whitesmoke;"
+}

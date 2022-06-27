@@ -1,0 +1,45 @@
+{% extends "new_template.html" %}
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories = True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flashy">{{ category }} - {{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% if session.name and session.type == 'Student' %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/view_marks.css')}}">
+    <p id="intro">Welcome to the student view marks page!</p>
+    <p id="intro">Here, you will see all the marks for your assessments</p>
+    <!--couldnt figure out how to show teacher name too lol-->
+    <table class="mark_table">
+        <tr>
+            <th>Assessment&nbsp</th>
+            <th>&nbspGrade</th>
+            <th>Remark Request</th>
+        </tr>
+        {% for mark in query_marks %}
+            <tr>
+                <td> {{ mark.assessment }} </td>
+                <td> {{ mark.grade }} </td>
+            <!--Now, create remark-->
+                <td>
+                    <form action="http://127.0.0.1:5000/view_marks" id="submit_remark" method = "post">
+                        <input type="text" value={{ mark.assessment }} class="py_only" name="assessment" readonly>
+                        <label for={{ mark.assessment }}>Why do you need a remark?</label>
+
+                        <input type="text" name={{ mark.assessment }} class="remark_blurb">
+                        <button type="submit">Submit</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}  
+    </table>
+
+    <p>Please note that you may only file ONE remark request per assessment!</p>
+{% else %}
+    <p class="forbidden">You are not authorized to view this page!</p>
+    <p class="forbidden">If you believe this is a mistake, please log in again.</p>
+{% endif %}
+
+{% endblock %}
